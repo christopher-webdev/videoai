@@ -15,6 +15,7 @@ const envVars = {
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
     TWITTER_SECRET: process.env.TWITTER_SECRET,
     TWITTER_CONSUMER_KEY: process.env.TWITTER_CONSUMER_KEY,
+    MONGO_URL: process.env.MONGO_URL,
 
     STRIPE_REDIRECT_URL() {
         return `${this.APP_URL}/plans-billing.html?provider=stripe&action=retrieve_payment`;

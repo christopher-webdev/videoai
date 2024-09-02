@@ -17,11 +17,12 @@
 // module.exports = connectDB;
 const mongoose = require('mongoose');
 const { bootstrap } = require('../functions/startup');
+const getEnv = require('./env');
 
 const connectDB = async () => {
     try {
         // Local MongoDB URI
-        await mongoose.connect('mongodb://localhost:27017/cluster1', {
+        await mongoose.connect(getEnv("MONGO_URL"), {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             serverSelectionTimeoutMS: 5000,
