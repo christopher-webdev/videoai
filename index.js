@@ -321,34 +321,6 @@ app.use('/api/billings', userBillingController);
 app.use('/api/packages', ensureAuthenticated, userPackageController);
 app.use('/api/config', appConfigController);
 
-// Serve index.html for the root URL
-
-// // Catch 404 errors
-// app.use((req, res, next) => {
-//     res.status(404);
-//     res.sendFile(path.join(__dirname, 'public', '404.html'));
-// });
-
-// Catch 500 errors and other server errors
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500);
-    res.sendFile(path.join(__dirname, 'public', '404.html'));
-});
-
-// Handle 502, 503, 504 errors
-app.use((err, req, res, next) => {
-    if (
-        res.statusCode === 500 ||
-        res.statusCode === 502 ||
-        res.statusCode === 503 ||
-        res.statusCode === 504
-    ) {
-        res.sendFile(path.join(__dirname, 'public', '500.html'));
-    } else {
-        next(err);
-    }
-});
 
 // Route for uploading files
 app.post('/upload', upload.single('file'), (req, res) => {
@@ -1612,5 +1584,7 @@ app.use((req, res, next) => {
     res.status(500);
     res.sendFile(path.join(__dirname, 'public', '500.html'));
 });
+
+
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

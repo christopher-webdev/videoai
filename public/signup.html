@@ -54,6 +54,7 @@
                                         <div class="signup-box-content">
                                             <div class="social-btn-grp">
                                                 <a
+                                                    id="google-btn"
                                                     class="btn-default btn-border"
                                                     href="/auth/google"
                                                 >
@@ -65,6 +66,7 @@
                                                 </a>
                                                 <a
                                                     class="btn-default btn-border"
+                                                    id="twitter-btn"
                                                     href="/auth/twitter"
                                                 >
                                                     <span class="icon-left"
@@ -226,12 +228,20 @@
                     return urlParams.get(param);
                 }
 
+                const twitterBtn = document.querySelector("#twitter-btn")
+                const googleBtn = document.querySelector("#google-btn")
+
+
+
                 // Check for the referral ID in the URL
                 const referralId = getQueryParam('r');
                 if (referralId) {
                     const referralInput = document.getElementById('referral');
                     if (referralInput) {
                         referralInput.value = referralId; // Update the input field
+
+                        twitterBtn.href = twitterBtn.href + "?ref="+referralId
+                        googleBtn.href = googleBtn.href + "?ref="+referralId
                     }
                 }
             });

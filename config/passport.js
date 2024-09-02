@@ -2,7 +2,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const TwitterStrategy = require('passport-twitter').Strategy;
 const mongoose = require('mongoose');
-const { User } = require('../models/User');
+const { User, AffiliateSys } = require('../models/User');
 const { SubscriptionPlan } = require('../models/User');
 const Admin = require('../models/Admin');
 const bcrypt = require('bcryptjs');
@@ -11,6 +11,8 @@ const getEnv = require('./env');
 const Package = require('../models/Package');
 const { Package: EPackage } = require('../enums/Package');
 const PaymentProvider = require('../models/PaymentProvider');
+const { AppConfigTable } = require('../functions/startup');
+const AppConfig = require('../models/AppConfig');
 
 // Function to manually parse the full name
 function parseFullName(fullName) {
@@ -37,12 +39,12 @@ module.exports = function (passport) {
     passport.use(
         new GoogleStrategy(
             {
-                clientID:
-                    '250038052754-atan58f9rgc9q6oacvrq11mfdlneecph.apps.googleusercontent.com',
-                clientSecret: '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',
-                callbackURL: 'https://eldravideo.com/auth/google/callback',
+                clientID: getEnv('GOOGLE_CLIENT_ID'),
+                clientSecret: getEnv('GOOGLE_CLIENT_SECRET'),
+                callbackURL: `${getEnv('APP_URL')}/auth/google/callback`, //'https://eldravideo.com/auth/google/callback',
+                passReqToCallback: true,
             },
-            async (accessToken, refreshToken, profile, done) => {
+            async (request, accessToken, refreshToken, profile, done) => {
                 const fullName = profile.displayName || '';
                 const parsedName = parseFullName(fullName);
                 const plan = await Package.findOne({
@@ -75,6 +77,27 @@ module.exports = function (passport) {
 
                         // Apply default credits if needed
                         await applyDefaultCredits(user._id, 'Free');
+
+                        if (request.session.refId) {
+                            const refId = request.session.refId;
+                            const referer = await User.findOne({
+                                referral_id: refId,
+                            });
+                            const appConfig = await AppConfig.findOne(
+                                {
+                                    name: AppConfigTable.earningPerUserReferered,
+                                },
+                                'value'
+                            );
+                            await referer.updateOne({
+                                $inc: {
+                                    referral_count: 1,
+                                    total_earned: appConfig.value || 0,
+                                },
+                            });
+
+                            await user.updateOne({referredBy:  referer._id, referral: refId})
+                        }
 
                         done(null, user);
                     }
@@ -165,13 +188,14 @@ module.exports = function (passport) {
     passport.use(
         new TwitterStrategy(
             {
-                consumerKey: 'vIv7Oi88efthaCI9VSQtJK5HP',
-                consumerSecret:
-                    'mtN86XgtyE2nyuni2vNNGnErDiWg51XZIdofSHnRybws3Y0V1Q',
-                callbackURL: 'https://eldravideo.com/auth/twitter/callback',
+                consumerKey: getEnv("TWITTER_CONSUMER_KEY"),
+                consumerSecret:getEnv("TWITTER_SECRET"),
+                callbackURL: getEnv("APP_URL") + '/auth/twitter/callback',
                 includeEmail: true,
+                passReqToCallback: true,
             },
-            async (token, tokenSecret, profile, done) => {
+            async (request, token, tokenSecret, profile, done) => {
+                console.log("🚀 ~ request:", request.session)
                 const fullName = profile.displayName || '';
                 const parsedName = parseFullName(fullName);
                 const plan = await Package.findOne({
@@ -201,6 +225,27 @@ module.exports = function (passport) {
                     } else {
                         // Create new user
                         user = await User.create(newUser);
+
+                        if (request.session.refId) {
+                            const refId = request.session.refId;
+                            const referer = await User.findOne({
+                                referral_id: refId,
+                            });
+                            const appConfig = await AppConfig.findOne(
+                                {
+                                    name: AppConfigTable.earningPerUserReferered,
+                                },
+                                'value'
+                            );
+                            await referer.updateOne({
+                                $inc: {
+                                    referral_count: 1,
+                                    total_earned: appConfig.value || 0,
+                                },
+                            });
+
+                            await user.updateOne({referredBy:  referer._id, referral: refId})
+                        }
 
                         // Apply default credits if needed
                         await applyDefaultCredits(user._id, 'Free');

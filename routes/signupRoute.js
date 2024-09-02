@@ -11,6 +11,8 @@ const { PORT } = require('../config');
 const Package = require('../models/Package');
 const { Package: EPackage } = require('../enums/Package');
 const PaymentProvider = require('../models/PaymentProvider');
+const { AppConfig } = require('aws-sdk');
+const { AppConfigTable } = require('../functions/startup');
 
 // Define the function to update credits
 const updateUserCredits = async (user, subscriptionPlan) => {
@@ -138,9 +140,9 @@ router.post(
 
 
             if(referral){
-                const affiliate = await AffiliateSys.findOne().select("signupEarning")
-                const refereredBy = await User.findOne({referral_id: referral})
-                await user.updateOne({referredBy: refereredBy._id, $inc: {total_earned: affiliate.signupEarning}})
+                const affiliate = await AppConfig.findOne({name: AppConfigTable.earningPerUserReferered}) //.select("signupEarning")
+                const refereredBy = await User.findOne({referral_id: referral,  $inc: {total_earned: affiliate.value, referral_count: 1}})
+                await user.updateOne({referredBy: refereredBy._id})
             }
 
             // Save the user to the database
