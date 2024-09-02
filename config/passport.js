@@ -268,6 +268,7 @@ module.exports = function (passport) {
     });
 
     passport.deserializeUser(async (obj, done) => {
+        console.log("🚀 ~ passport.deserializeUser ~ obj:", obj)
         try {
             let entity;
             if (obj.type === 'Admin') {
