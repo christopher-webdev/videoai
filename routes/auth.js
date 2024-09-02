@@ -486,7 +486,18 @@ router.post('/add-plan', (req, res) => {
 // @route GET /auth/google
 router.get(
     '/google',
-    passport.authenticate('google', { scope: ['profile', 'email'] })
+    (req, res, next) => {
+        const refId = req.query.ref;
+        req.session.refId = refId;
+        req.session.save((err) => {
+            if (err) return next(err);
+            next();
+        });
+    },
+    passport.authenticate('google', {
+        scope: ['profile', 'email'],
+        keepSessionInfo: true,
+    })
 );
 
 // @desc Google auth callback
@@ -499,7 +510,18 @@ router.get(
     }
 );
 
-router.get('/twitter', passport.authenticate('twitter'));
+router.get(
+    '/twitter',
+    (req, res, next) => {
+        const refId = req.query.ref;
+        req.session.refId = refId;
+        req.session.save((err) => {
+            if (err) return next(err);
+            next();
+        });
+    },
+    passport.authenticate('twitter', { keepSessionInfo: true })
+);
 
 router.get(
     '/twitter/callback',

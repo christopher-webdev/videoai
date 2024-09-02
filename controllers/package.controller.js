@@ -93,7 +93,7 @@ router
                 success: true,
                 data: {
                     pkgs,
-                    activePlan: user.subscriptionPlan
+                    activePlan: user?.subscriptionPlan
                 },
             });
         } catch (error) {
