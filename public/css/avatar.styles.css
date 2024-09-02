@@ -1,0 +1,49 @@
+.avatar-background, .add-location-btn{
+    width: 200px;
+    height: 200px;
+    overflow-x: hidden;
+    background: #eee;
+    border-radius: 10px;
+}
+.avatar-background.avatar{
+    width: 100%;
+}
+
+.avatar-background img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.avatar-background input[type=file]{
+    display: none;
+}
+
+.avatar-background::-webkit-scrollbar-thumb{
+    width: 1px;
+    height: 1px;
+    background-color: gray;
+    border-radius: 10px;
+}
+.avatar-background::-webkit-scrollbar-track{
+    height: 1px;
+    width: 1px;
+    background-color: transparent;
+}
+
+.small-img{
+    position: relative;
+    width: 80px;
+    height: 80px;
+    /* overflow-x: hidden; */
+    background: #eee;
+    border-radius: 10px;
+    text-align: center;
+}
+.small-img img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+

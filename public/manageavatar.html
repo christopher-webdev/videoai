@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin Dashboard</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/app.css" />
+        <link rel="stylesheet" href="css/avatar.styles.css">
+        <link
+            rel="stylesheet"
+            href="assets/css/plugins/fontawesome-all.min.css"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap"
+            rel="stylesheet"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com/" />
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <style>
+            /* Custom class for the <a> elements */
+            li {
+                color: #f97316; /* Tailwind's text-orange-500 */
+                background-color: transparent; /* Default background color */
+                padding: 0.5rem 1rem; /* px-4 py-2 */
+                border-radius: 0.5rem; /* rounded-lg */
+                transition: color 0.3s ease, background-color 0.3s ease; /* transition-colors duration-300 */
+                text-decoration: none; /* Remove underline from links */
+            }
+
+            li:hover {
+                color: #f97316; /* Tailwind's hover:text-orange-700 (same color in this example) */
+                background-color: #fef3c7; /* Tailwind's hover:bg-orange-100 */
+            }
+        </style>
+        <style>
+            /* Sidebar Styling */
+            .Sidebar--bars {
+                height: 100vh;
+                width: 20% !important;
+                background-color: #252a34;
+                color: #fff;
+                font-size: 14px;
+                padding-top: 20px;
+            }
+
+            .sidebar {
+                padding: 20px;
+            }
+            li {
+                color: #f97316; /* Tailwind's text-orange-500 */
+                background-color: transparent; /* Default background color */
+                padding: 0.5rem 1rem; /* px-4 py-2 */
+                border-radius: 0.5rem; /* rounded-lg */
+                transition: color 0.3s ease, background-color 0.3s ease; /* transition-colors duration-300 */
+                text-decoration: none; /* Remove underline from links */
+            }
+
+            li:hover {
+                color: #f97316; /* Tailwind's hover:text-orange-700 (same color in this example) */
+                background-color: #fef3c7; /* Tailwind's hover:bg-orange-100 */
+            }
+        </style>
+    </head>
+    <body class="bg-gray-100">
+        <div class="flex">
+            <div class="w-64 h-screen bg-dark sidebar text-white Sidebar--bars">
+                <div class="p-4 text-2xl font-semibold">Admin Dashboard</div>
+                <div class="sideBar">
+                    <div class="sidebar-admin">
+                        <ul class="mt-8" id="listAllnavigators">
+                            <li
+                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                                id="manageAdminBtn"
+                            >
+                                <a
+                                    href="admin-dashboard.html?trigger=manageAdminBtn"
+                                    >Manage Admin</a
+                                >
+                            </li>
+
+                            <ul class="ml-4 mt-2 hidden" id="allAdminFunctions">
+                                <li
+                                    class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                                    id="registerAdmin"
+                                >
+                                    🚀 Register Admin
+                                </li>
+                                <li
+                                    class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                                    id="changeAdminPasswordSectionBtn"
+                                >
+                                    🚀 Change Admin Password
+                                </li>
+                                <li
+                                    class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                                    id="adminListBtn"
+                                >
+                                    🚀 Admin List
+                                </li>
+                            </ul>
+                            <li
+                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                                id="manageUsersBtn"
+                            >
+                                <a
+                                    href="admin-dashboard.html?trigger=manageUsersBtn"
+                                    >Manage Users</a
+                                >
+                            </li>
+                            <li
+                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                                id="manageSubmitsAndPricingBtn"
+                            >
+                                <a
+                                    href="admin-dashboard.html?trigger=manageSubmitsAndPricingBtn"
+                                >
+                                    Manage User Submits and Pricing</a
+                                >
+                            </li>
+                            <li
+                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                                id="manageProjectAiBtn"
+                            >
+                                <a
+                                    href="admin-dashboard.html?trigger=manageProjectAiBtn"
+                                    >Manage Projects</a
+                                >
+                            </li>
+                            <ul
+                                class="ml-4 mt-2 custom-li hidden"
+                                id="manageProjectslinkBtn"
+                            >
+                                <li
+                                    class="px-4 py-2 over:bg-gray-600 cursor-pointer"
+                                    data-category=""
+                                >
+                                    🚀 All Projects
+                                </li>
+                                <li
+                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
+                                    data-category="Video Editor AI"
+                                >
+                                    🚀 Video Editor
+                                </li>
+                                <li
+                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
+                                    data-category="Video Restyling AI"
+                                >
+                                    🚀 Video Restyle
+                                </li>
+                                <li
+                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
+                                    data-category="Video Voicing"
+                                >
+                                    🚀 Video Voicing
+                                </li>
+                                <li
+                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
+                                    data-category="Lip Sync AI"
+                                >
+                                    🚀 Lip Sync
+                                </li>
+                                <li
+                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
+                                    data-category="Face Swap AI"
+                                >
+                                    🚀 Face Swap
+                                </li>
+                                <li
+                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
+                                    data-category="3D Video Modeling AI"
+                                >
+                                    🚀 3D Video Modeling
+                                </li>
+                                <li
+                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
+                                    data-category="Add Avatar"
+                                >
+                                    🚀 My Avatar
+                                </li>
+                            </ul>
+                            <li
+                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                                id="manageplanBtn"
+                            >
+                                <a
+                                    href="admin-dashboard.html?trigger=manageplanBtn"
+                                    >Manage Plans Pricing View</a
+                                >
+                            </li>
+                            <li
+                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                                id="addplanBtn"
+                            >
+                                <a
+                                    href="admin-dashboard.html?trigger=addplanBtn"
+                                >
+                                    Add More Pricing Plan View</a
+                                >
+                            </li>
+                            <li
+                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                                id="ManageComparisonBtn"
+                            >
+                                <a
+                                    href="admin-dashboard.html?trigger=ManageComparisonBtn"
+                                >
+                                    Manage Pricing Plan View Comparison</a
+                                >
+                            </li>
+                            <li
+                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                                id="AddComparisonBtn"
+                            >
+                                <a
+                                    href="admin-dashboard.html?trigger=AddComparisonBtn"
+                                    >Add More Pricing Plan Comparison</a
+                                >
+                            </li>
+                            <li
+                                class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
+                                id="manageAvatarBtn"
+                            >
+                                <a href="manageavatar.html">Manage Avatar</a>
+                            </li>
+                            <li
+                                class="router px-4 py-2 hover:bg-gray-600 cursor-pointer"
+                                id="managePackagesBtn"
+                                data-url="manage-packages"
+                            >
+                                <a href="manageplanx.html"
+                                    >Manage subscription Plans and Packages</a
+                                >
+                            </li>
+                            <li
+                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                                id="manageVideoBtn"
+                            >
+                                <a
+                                    href="admin-dashboard.html?trigger=manageVideoBtn"
+                                    >Add video</a
+                                >
+                            </li>
+                            <li
+                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                                id="manageNewsletterBtn"
+                            >
+                                <a
+                                    href="admin-dashboard.html?trigger=manageNewsletterBtn"
+                                    >Manage Newsletter</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <li
+                    class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                    id="logoutBtn"
+                >
+                    <a href="/logout">Logout</a>
+                </li>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex-1 p-6">
+                <div
+                    id="manageAvatarSection"
+                    class="sidebar-content manage-projects"
+                >
+                    <style>
+                        .submitAvatar,
+                        .avatarBtn {
+                            background-color: #1f2937;
+                            color: white;
+                            font-weight: 600;
+                        }
+                    </style>
+                    <h2 class="text-3xl font-semibold text-gray-700 mb-6">
+                        Manage Avatars
+                    </h2>
+                    <div>
+                        <div><p>Upload avatars and locations.</p>
+                            <small class="text-slate-500">Click the box to upload an image</small>
+                        </div>
+
+                        <div id="UpdateUploaderContainer" class="flex gap-4 rounded-md m-2"></div>
+                    </div>
+<br>
+                    <div id="UploaderContainer"></div>
+                 </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const routers = document.querySelectorAll('.router');
+                        const path = new URL(window.location).pathname;
+
+                        routers.forEach(
+                            (el) => el.addEventListener('click', handleRouting),
+                            false
+                        );
+
+                        function handleRouting($this) {
+                            const url = $this.target.dataset.url;
+                            window.history.pushState(url, undefined, `/${url}`);
+                            document
+                                .querySelectorAll(`.sidebar-content`)
+                                .forEach((el) => el.classList.add('hidden'));
+                            document
+                                .querySelector(`.${url.replaceAll('/', '')}`)
+                                .classList.remove('hidden');
+                        }
+                    });
+                </script>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        // Function  user
+                        let AvailablePackages = {};
+
+                        document
+                            .getElementById('AddPackageBtn')
+                            .addEventListener('click', () =>
+                                addNewPackageField(undefined, false)
+                            );
+
+                        function buildFormData(form) {
+                            // Convert form data to a JSON object, handling multiple fields with the same name
+                            const formData = new FormData(form);
+                            const formObject = {};
+                            const benefits = [];
+
+                            for (const [key, value] of formData) {
+                                if (key === 'benefits') {
+                                    // If key is benefit_name, push a new object into benefits array
+                                    benefits.push({
+                                        name: value,
+                                        isAvailable: false,
+                                    });
+                                } else if (
+                                    key === 'isAvailable' &&
+                                    benefits.length > 0
+                                ) {
+                                    // Update the isAvailable field of the last benefit in the array
+                                    benefits[benefits.length - 1].isAvailable =
+                                        value == 'on';
+                                } else {
+                                    // For other fields, add them directly to the formObject
+                                    if (formObject[key]) {
+                                        // If the key already exists, convert it to an array and push the new value
+                                        if (Array.isArray(formObject[key])) {
+                                            formObject[key].push(value);
+                                        } else {
+                                            formObject[key] = [
+                                                formObject[key],
+                                                value,
+                                            ];
+                                        }
+                                    } else {
+                                        formObject[key] = value;
+                                    }
+                                }
+                            }
+
+                            // Add the benefits array to the formObject
+                            formObject.benefits = benefits;
+                            return formObject;
+                        }
+
+                        function addNewPackageField(pkg, isNew = true) {
+                            const container = document.createElement('form');
+                            const benefitInfoField =
+                                document.createElement('p');
+                            const benefitcontainer =
+                                document.createElement('div');
+                            const packagePrice =
+                                document.createElement('input');
+
+                            const packageHiddenId =
+                                document.createElement('input');
+
+                            const addBenefitBtn =
+                                document.createElement('button');
+                            const removePackageBtn =
+                                document.createElement('button');
+                            const submitButton =
+                                document.createElement('button');
+
+                            // const packageInterval = document.createElement('select')
+                            benefitInfoField.innerText =
+                                'Please check the box if the corresponding benefit is available for this package';
+                            const packageName =
+                                document.createElement('select');
+                            packageName.name = 'name';
+                            packageName.disabled = isNew;
+
+                            const packageInterval =
+                                document.createElement('select');
+                            packageInterval.name = 'interval';
+                            packageInterval.disabled = isNew;
+
+                            AvailablePackages?.allowedIntervals?.forEach(
+                                (el) => {
+                                    const option =
+                                        document.createElement('option');
+                                    option.value = el;
+                                    option.innerText = pkg?.interval || el;
+                                    packageInterval.append(option);
+                                }
+                            );
+
+                            AvailablePackages?.allowedPackages?.forEach(
+                                (el) => {
+                                    const option =
+                                        document.createElement('option');
+                                    option.value = el.name;
+                                    option.innerText = pkg?.name || el.name;
+                                    packageName.append(option);
+                                }
+                            );
+
+                            // packageName.value = pkg?.name || ""
+                            // packageName.disabled = isNew
+
+                            packageHiddenId.name = 'packageId';
+                            packageHiddenId.value = pkg?._id || '';
+                            packageHiddenId.hidden = true;
+
+                            packagePrice.name = 'amount';
+                            packagePrice.value = pkg?.amount || '';
+                            packagePrice.disabled = pkg?.name === 'Free';
+
+                            // packageInterval.name = "interval"
+                            // packageInterval.value = pkg?.interval || ""
+                            // packageInterval.disabled = true
+
+                            packageName.placeholder = 'Write Package name';
+                            packagePrice.placeholder = 'Add Price';
+                            packageInterval.placeholder = 'month, year';
+
+                            container.className =
+                                'p-4 border border-blue-500 my-4 bg-gray-300 rounded-md';
+                            benefitInfoField.className =
+                                'p-4 border my-4 bg-yellow-100 text-yellow-600';
+                            benefitcontainer.className = 'p-2';
+                            packageName.className = 'p-2 mr-2';
+
+                            packagePrice.className = 'p-2 mr-2';
+                            packageInterval.className = 'p-2 mr-2';
+                            packageInterval.disabled = isNew;
+
+                            addBenefitBtn.className =
+                                'p-2 border bg-gray-500 rounded-md text-white mr-2';
+                            removePackageBtn.className =
+                                'p-2 border bg-gray-500 rounded-md text-white mr-2';
+                            submitButton.className =
+                                'p-2 border bg-gray-500 rounded-md text-white mr-2 text-white';
+
+                            removePackageBtn.type = 'button';
+                            // removePackageBtn.hidden = isNew
+
+                            addBenefitBtn.type = 'button';
+                            submitButton.type = 'submit';
+
+                            addBenefitBtn.innerText = 'Add benefit';
+                            removePackageBtn.innerText = 'Dismiss Section';
+                            submitButton.innerText = 'Create Package';
+
+                            pkg?.benefits.map((b) => {
+                                addBenefitField(benefitcontainer, b);
+                            });
+
+                            addBenefitBtn.addEventListener('click', () =>
+                                addBenefitField(benefitcontainer, undefined)
+                            );
+                            addBenefitField(benefitcontainer, undefined);
+                            removePackageBtn.addEventListener('click', () => {
+                                const canContinue =
+                                    packageName.value.length < 2 ||
+                                    packagePrice.value.length < 2 ||
+                                    packageInterval.value.length < 2;
+                                if (!canContinue) {
+                                    if (
+                                        confirm('Your inputs will be cleared')
+                                    ) {
+                                        container.remove();
+                                    }
+                                } else {
+                                    container.remove();
+                                }
+                            });
+
+                            container.append(
+                                packageName,
+                                packagePrice,
+                                packageInterval,
+                                addBenefitBtn,
+                                removePackageBtn,
+                                packageHiddenId
+                            );
+                            container.append(
+                                benefitInfoField,
+                                benefitcontainer
+                            );
+                            container.append(submitButton);
+
+                            container.addEventListener(
+                                'submit',
+                                handleSubmitNewPackage
+                            );
+
+                            document
+                                .getElementById('packagesContainer')
+                                .append(container);
+                        }
+
+                        async function handleSubmitNewPackage(event) {
+                            event.preventDefault();
+
+                            const formData = buildFormData(event.target);
+                            const formElements = event.target.elements;
+                            try {
+                                for (let i = 0; i < formElements.length; i++) {
+                                    formElements[i].disabled = true;
+                                }
+                                const response = await fetch(
+                                    `/api/packages${
+                                        formData?.packageId
+                                            ? `/${formData?.packageId}`
+                                            : ''
+                                    }`,
+                                    {
+                                        method: `${
+                                            formData?.packageId ? `PUT` : 'POST'
+                                        }`,
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                        },
+                                        body: JSON.stringify({
+                                            packages: formData,
+                                        }),
+                                    }
+                                );
+
+                                if (!response.ok) {
+                                    alert(response.errors);
+                                }
+                                const data = (await response.json()).data;
+                            } catch (error) {
+                                console.log(
+                                    '🚀 ~ handleSubmitNewPackage ~ error:',
+                                    error
+                                );
+                            } finally {
+                                for (let i = 0; i < formElements.length; i++) {
+                                    formElements[i].disabled = false;
+                                }
+                            }
+                        }
+
+                        function addBenefitField(container, benefit) {
+                            const benefitContainer =
+                                document.createElement('div');
+                            const input = document.createElement('input');
+                            const isAvailable = document.createElement('input');
+                            const addMoreBtn = document.createElement('button');
+                            const removeBtn = document.createElement('button');
+
+                            input.name = 'benefits';
+                            input.value = benefit?.name || '';
+
+                            isAvailable.name = 'isAvailable';
+                            isAvailable.checked =
+                                !!benefit?.isAvailable || false;
+                            isAvailable.className = 'p-2 mx-3';
+                            isAvailable.type = 'checkbox';
+
+                            benefitContainer.className = 'p-2';
+                            input.placeholder =
+                                'Write something interesting...';
+                            input.className = 'p-2 mr-2';
+                            addMoreBtn.className =
+                                'p-2 border bg-gray-500 rounded-md text-white';
+                            removeBtn.className =
+                                'p-2 border bg-gray-500 rounded-md text-white mr-2';
+
+                            addMoreBtn.innerText = 'Add';
+                            removeBtn.innerText = 'Remove';
+
+                            addMoreBtn.type = 'button';
+                            addMoreBtn.hidden = true;
+                            removeBtn.type = 'button';
+
+                            addMoreBtn.addEventListener('click', () =>
+                                addBenefitField(benefitContainer)
+                            );
+                            removeBtn.addEventListener('click', () => {
+                                if (input.value.length > 2) {
+                                    if (confirm('Your input will be cleared')) {
+                                        benefitContainer.remove();
+                                    }
+                                } else {
+                                    benefitContainer.remove();
+                                }
+                            });
+
+                            benefitContainer.append(
+                                isAvailable,
+                                input,
+                                addMoreBtn,
+                                removeBtn
+                            );
+
+                            container.append(benefitContainer);
+                        }
+
+                        const routers = document.querySelectorAll('.router');
+                        const path = new URL(window.location).pathname;
+
+                        routers.forEach(
+                            (el) => el.addEventListener('click', handleRouting),
+                            false
+                        );
+
+                        function handleRouting($this) {
+                            const url = $this.target.dataset.url;
+                            window.history.pushState(url, undefined, `/${url}`);
+                            document
+                                .querySelectorAll(`.sidebar-content`)
+                                .forEach((el) => el.classList.add('hidden'));
+                            document
+                                .querySelector(`.${url.replaceAll('/', '')}`)
+                                .classList.remove('hidden');
+                        }
+
+                        getPackages();
+
+                        function getPackages() {
+                            fetch('/api/packages')
+                                .then((e) => e.json())
+                                .then(async ({ data }) => {
+                                    // console.log(data);
+
+                                    const resq = await fetch(
+                                        '/api/packages/list'
+                                    );
+                                    AvailablePackages = (await resq.json())
+                                        .data;
+                                    // console.log("🚀 ~ .then ~ AvailablePackages:", AvailablePackages)
+
+                                    // AvailablePackages = {
+                                    //     allowedPackages: data.allowedPackages,
+                                    //     allowedIntervals: data.allowedIntervals
+                                    // }
+
+                                    let options = ``;
+                                    for (const pkg of AvailablePackages.allowedPackages) {
+                                        options += `<option value='${pkg.name}'>${pkg.name}</option>`;
+                                    }
+
+                                    const package =
+                                        document.getElementById(
+                                            'subscriptionPlan'
+                                        );
+                                    package.innerHTML = options;
+
+                                    for (const pkg of data.pkgs) {
+                                        addNewPackageField(pkg);
+                                    }
+
+                                    // package.addEventListener("change", (e)=>getPackagePoints(e.target.value), false)
+                                });
+                        }
+                        async function updatePackage(data) {
+                            try {
+                                const response = await fetch('/api/packages', {
+                                    method: 'PUT',
+                                    body: JSON.stringify(data),
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                });
+
+                                const data = await response.json();
+                                console.log(data);
+                            } catch (error) {
+                                console.log(
+                                    '🚀 ~ updatePackage ~ error:',
+                                    error
+                                );
+                            }
+                        }
+
+                        async function createPackage(data) {
+                            try {
+                                const response = await fetch('/api/packages', {
+                                    method: 'PUT',
+                                    body: JSON.stringify(data),
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                });
+
+                                const data = await response.json();
+                                console.log(data);
+                            } catch (error) {
+                                console.log(
+                                    '🚀 ~ updatePackage ~ error:',
+                                    error
+                                );
+                            }
+                        }
+
+                        const fetchUsers = async () => {
+                            try {
+                                const response = await axios.get('/api/users');
+                                const users = response.data.users;
+                                const userTableBody =
+                                    document.getElementById('userTableBody');
+                                userTableBody.innerHTML = '';
+
+                                users.forEach((user, index) => {
+                                    const row = document.createElement('tr');
+                                    row.classList.add(
+                                        'bg-gray-100',
+                                        'border-b',
+                                        'hover:bg-gray-200',
+                                        'text-sm',
+                                        'font-medium'
+                                    );
+
+                                    row.innerHTML = `
+                <td class="py-2 px-4">${index + 1}</td>
+                <td class="py-2 px-4">${user._id}</td>
+                <td class="py-2 px-4">${user.firstName} ${
+                                        user.lastName || ''
+                                    }</td>
+                <td class="py-2 px-4">${user.email}</td>
+                <td class="py-2 px-4">${user.phoneNumber || 'N/A'}</td>
+                <td class="py-2 px-4">${user.address || 'N/A'}</td>
+                <td class="py-2 px-4">${user.subscriptionPlan}</td>
+                <td class="py-2 px-4">
+                    <button
+                        onclick="deleteUser('${user._id}')"
+                        class="text-red-600 hover:text-red-800 font-semibold mr-4">
+                        Delete user
+                    </button><br>
+                    <button
+                        onclick="window.openSubscriptionModal('${user._id}', '${
+                                        user.subscriptionPlan
+                                    }')"
+                        class="text-blue-600 hover:text-blue-800 font-semibold">
+                        Update Plan
+                    </button>
+                </td>
+            `;
+                                    userTableBody.appendChild(row);
+                                });
+                            } catch (error) {
+                                console.error('Error fetching users:', error);
+                            }
+                        };
+
+                        window.openSubscriptionModal = (
+                            userId,
+                            currentPlan
+                        ) => {
+                            selectedUserId = userId;
+                            document.getElementById(
+                                'subscriptionSelect'
+                            ).value = currentPlan;
+                            document
+                                .getElementById('subscriptionModal')
+                                .classList.remove('hidden');
+                        };
+
+                        document
+                            .getElementById('closeModalBtn')
+                            .addEventListener('click', () => {
+                                document
+                                    .getElementById('subscriptionModal')
+                                    .classList.add('hidden');
+                            });
+
+                        document
+                            .getElementById('updateSubscriptionBtn')
+                            .addEventListener('click', async () => {
+                                const newPlan =
+                                    document.getElementById(
+                                        'subscriptionSelect'
+                                    ).value;
+
+                                try {
+                                    await axios.put(
+                                        `/update-subscription/${selectedUserId}`,
+                                        {
+                                            subscriptionPlan: newPlan,
+                                        }
+                                    );
+                                    fetchUsers(); // Refresh the users table
+                                    document
+                                        .getElementById('subscriptionModal')
+                                        .classList.add('hidden');
+                                } catch (error) {
+                                    console.error(
+                                        'Error updating subscription plan:',
+                                        error
+                                    );
+                                }
+                            });
+
+                        document
+                            .getElementById('searchInput')
+                            .addEventListener('input', (e) => {
+                                const searchQuery =
+                                    e.target.value.toLowerCase();
+                                const rows =
+                                    document.querySelectorAll(
+                                        '#userTableBody tr'
+                                    );
+
+                                rows.forEach((row) => {
+                                    const userId =
+                                        row.cells[1].textContent.toLowerCase(); // User ID column
+                                    const name =
+                                        row.cells[2].textContent.toLowerCase(); // Name column
+                                    const email =
+                                        row.cells[3].textContent.toLowerCase(); // Email column
+
+                                    if (
+                                        userId.includes(searchQuery) ||
+                                        name.includes(searchQuery) ||
+                                        email.includes(searchQuery)
+                                    ) {
+                                        row.classList.remove('hidden');
+                                    } else {
+                                        row.classList.add('hidden');
+                                    }
+                                });
+                            });
+
+                        // Fetch users initially
+                        fetchUsers();
+                        // delete users
+                        window.deleteUser = async (userId) => {
+                            const confirmation = confirm(
+                                'Are you sure you want to delete this user?'
+                            );
+                            if (!confirmation) {
+                                return; // Exit the function if the user cancels
+                            }
+
+                            try {
+                                await axios.delete(`/users/${userId}`);
+                                fetchUsers(); // Refresh the user list after deletion
+                            } catch (error) {
+                                console.error('Error deleting user:', error);
+                            }
+                        };
+
+                        fetchUsers();
+                    });
+                </script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const categoryButtons = document.querySelectorAll(
+                            '#manageProjectslinkBtn li'
+                        );
+
+                        categoryButtons.forEach((button) => {
+                            button.addEventListener('click', (e) => {
+                                const category =
+                                    e.target.getAttribute('data-category');
+                                fetchProjects(category);
+                            });
+                        });
+
+                        // Initial fetch to show all projects sorted by createdAt
+                        fetchProjects();
+                    });
+                    document.addEventListener('DOMContentLoaded', () => {
+                        fetchProjects();
+
+                        // Event listener for Update Status form submission
+                        // document
+                        //     .getElementById('updateStatusForm')
+                        //     .addEventListener('submit', async (e) => {
+                        //         e.preventDefault();
+                        //         await updateProjectStatus();
+                        //     });
+
+                        // Event listener for Reupload form submission
+                        // document
+                        //     .getElementById('reuploadForm')
+                        //     .addEventListener('submit', async (e) => {
+                        //         e.preventDefault();
+                        //         await reuploadEditedFile();
+                        //     });
+                    });
+
+                    // Add event listeners to all category buttons
+                    document
+                        .querySelectorAll('#manageProjectslinkBtn li')
+                        .forEach((btn) => {
+                            btn.addEventListener('click', function () {
+                                const category =
+                                    this.getAttribute('data-category');
+                                fetchProjects(category);
+                            });
+                            fetchProjects();
+                        });
+                    async function fetchProjects(category = null) {
+                        try {
+                            const response = await axios.get('/api/projects');
+                            let projects = response.data.projects;
+
+                            if (category) {
+                                projects = projects.filter(
+                                    (project) => project.title === category
+                                );
+                            }
+
+                            // Sort projects by most recent
+                            projects.sort(
+                                (a, b) =>
+                                    new Date(b.createdAt) -
+                                    new Date(a.createdAt)
+                            );
+
+                            const projectsTableBody =
+                                document.getElementById('projectsTableBody');
+                            projectsTableBody.innerHTML = '';
+
+                            projects.forEach((project, index) => {
+                                const projectRow = document.createElement('tr');
+
+                                const numberCell = document.createElement('td');
+                                numberCell.className = 'py-2 px-4';
+                                numberCell.innerText = index + 1;
+                                projectRow.appendChild(numberCell);
+
+                                const idCell = document.createElement('td');
+                                idCell.className = 'py-2 px-4';
+                                idCell.innerText = `${project._id} / ${project.userId._id}`;
+                                projectRow.appendChild(idCell);
+
+                                const titleCell = document.createElement('td');
+                                titleCell.className = 'py-2 px-4';
+                                titleCell.innerText = project.title;
+                                projectRow.appendChild(titleCell);
+
+                                const statusCell = document.createElement('td');
+                                statusCell.className = 'py-2 px-4';
+                                let statusContent = `<strong>Status: ${project.status}</strong>`;
+
+                                if (project.estimatedCompletionTime) {
+                                    statusContent += `<p><strong>ETA:</strong> ${new Date(
+                                        project.estimatedCompletionTime
+                                    ).toLocaleString()}</p>`;
+                                }
+
+                                if (
+                                    project.statusHistory &&
+                                    project.statusHistory.length > 0
+                                ) {
+                                    const latestStatus =
+                                        project.statusHistory[
+                                            project.statusHistory.length - 1
+                                        ];
+                                    if (latestStatus.comment) {
+                                        statusContent += `<p>Comment: ${latestStatus.comment}</p>`;
+                                    }
+                                }
+
+                                statusCell.innerHTML = statusContent;
+                                projectRow.appendChild(statusCell);
+
+                                const createdAtCell =
+                                    document.createElement('td');
+                                createdAtCell.className = 'py-2 px-4';
+                                createdAtCell.innerText = new Date(
+                                    project.createdAt
+                                ).toLocaleString();
+                                projectRow.appendChild(createdAtCell);
+
+                                const optionsCell =
+                                    document.createElement('td');
+                                optionsCell.className = 'py-2 px-4';
+
+                                // Display multiple video links
+                                if (
+                                    project.videoLink &&
+                                    project.videoLink.length > 0
+                                ) {
+                                    project.videoLink.forEach((link) => {
+                                        optionsCell.innerHTML += `<p><strong>Video Link:</strong> <a href="${
+                                            link.startsWith('http')
+                                                ? link
+                                                : `http://${link}`
+                                        }" class="text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">${link}</a></p>`;
+                                    });
+                                }
+
+                                if (project.videoDescription) {
+                                    optionsCell.innerHTML += `<p><strong>Description:</strong> ${project.videoDescription}</p>`;
+                                }
+
+                                if (project.orientation) {
+                                    optionsCell.innerHTML += `<p><strong>Orientation:</strong> ${project.orientation}</p>`;
+                                }
+
+                                if (project.location) {
+                                    optionsCell.innerHTML += `<p><strong>Location:</strong> ${project.location}</p>`;
+                                }
+
+                                if (project.avatar) {
+                                    optionsCell.innerHTML += `<p><strong>Avatar:</strong> ${project.avatar}</p>`;
+                                }
+
+                                projectRow.appendChild(optionsCell);
+
+                                const actionsCell =
+                                    document.createElement('td');
+                                actionsCell.className = 'py-2 px-4';
+                                actionsCell.innerHTML += `
+                <button
+                    onclick="openUpdateStatusModal('${project._id}')"
+                    class="bg-blue-500 text-white font-bold py-2 px-4 rounded shadow-md hover:bg-blue-700 hover:shadow-lg transition-all duration-300 mr-2">
+                    Update Status
+                </button><br>
+                <button
+                    onclick="openReuploadModal('${project._id}')"
+                    class="bg-green-500 text-white font-bold py-2 px-4 rounded shadow-md hover:bg-green-700 hover:shadow-lg transition-all duration-300 mr-2">
+                    Reupload
+                </button><br> 
+                <button
+                    onclick="openMediaModal('${project._id}')"
+                    class="bg-indigo-500 text-white font-bold py-2 px-4 rounded shadow-md hover:bg-indigo-700 hover:shadow-lg transition-all duration-300">
+                    View Project Files
+                </button>
+                <button
+                    onclick="deleteProject('${project._id}')"
+                    class="bg-red-500 text-white font-bold py-2 px-4 rounded shadow-md hover:bg-red-700 hover:shadow-lg transition-all duration-300">
+                    Delete Project
+                </button><br><br>
+            `;
+                                projectRow.appendChild(actionsCell);
+
+                                projectsTableBody.appendChild(projectRow);
+
+                                const hrRow = document.createElement('tr');
+                                const hrCell = document.createElement('td');
+                                hrCell.setAttribute('colspan', '7');
+                                hrCell.innerHTML =
+                                    '<hr class="border-t-2 border-gray-300 my-4">';
+                                hrRow.appendChild(hrCell);
+                                projectsTableBody.appendChild(hrRow);
+                            });
+                        } catch (error) {
+                            console.error('Failed to fetch projects:', error);
+                        }
+                    }
+
+                    function openUpdateStatusModal(projectId) {
+                        document.getElementById(
+                            'updateStatusModal'
+                        ).dataset.projectId = projectId;
+                        document
+                            .getElementById('updateStatusModal')
+                            .classList.remove('hidden');
+                    }
+
+                    function closeUpdateStatusModal() {
+                        document
+                            .getElementById('updateStatusModal')
+                            .classList.add('hidden');
+                    }
+
+                    async function updateProjectStatus() {
+                        const projectId =
+                            document.getElementById('updateStatusModal').dataset
+                                .projectId;
+                        const status = document.getElementById('status').value;
+                        const comment =
+                            document.getElementById('comment').value;
+                        const estimatedTime =
+                            document.getElementById('estimatedTime').value;
+
+                        try {
+                            await axios.post(
+                                `/api/admin/update-project-status/${projectId}`,
+                                {
+                                    status,
+                                    comment,
+                                    estimatedCompletionTime: estimatedTime,
+                                }
+                            );
+                            closeUpdateStatusModal();
+                            fetchProjects();
+                        } catch (error) {
+                            console.error(
+                                'Failed to update project status:',
+                                error
+                            );
+                        }
+                    }
+
+                    function openReuploadModal(projectId) {
+                        document.getElementById(
+                            'reuploadModal'
+                        ).dataset.projectId = projectId;
+                        document
+                            .getElementById('reuploadModal')
+                            .classList.remove('hidden');
+                    }
+
+                    function closeReuploadModal() {
+                        document
+                            .getElementById('reuploadModal')
+                            .classList.add('hidden');
+                    }
+
+                    async function reuploadEditedFile() {
+                        const projectId =
+                            document.getElementById('reuploadModal').dataset
+                                .projectId;
+                        const formData = new FormData();
+                        formData.append(
+                            'file',
+                            document.getElementById('editedFile').files[0]
+                        );
+
+                        try {
+                            await axios.post(
+                                `/api/projects/${projectId}/reupload`,
+                                formData,
+                                {
+                                    headers: {
+                                        'Content-Type': 'multipart/form-data',
+                                    },
+                                }
+                            );
+                            closeReuploadModal();
+                            fetchProjects();
+                        } catch (error) {
+                            console.error('Failed to reupload file:', error);
+                        }
+                    }
+
+                    async function deleteProject(projectId) {
+                        const confirmation = confirm(
+                            'Are you sure you want to delete this project?'
+                        );
+                        if (!confirmation) {
+                            return; // If the user cancels, exit the function
+                        }
+
+                        try {
+                            await axios.delete(`/api/projects/${projectId}`);
+                            fetchProjects();
+                        } catch (error) {
+                            console.error('Failed to delete project:', error);
+                        }
+                    }
+                    document
+                        .getElementById('projectSearchInput')
+                        .addEventListener('input', (e) => {
+                            const searchQuery = e.target.value.toLowerCase();
+                            const rows = document.querySelectorAll(
+                                '#projectsTableBody tr'
+                            );
+
+                            rows.forEach((row) => {
+                                // Skip rows that don't have the expected number of cells (7 in this case)
+                                if (row.cells.length < 7) return;
+
+                                const projectId =
+                                    row.cells[1].textContent.toLowerCase(); // Project ID column
+                                const status =
+                                    row.cells[3].textContent.toLowerCase(); // Status column
+
+                                if (
+                                    projectId.includes(searchQuery) ||
+                                    status.includes(searchQuery)
+                                ) {
+                                    row.classList.remove('hidden');
+                                } else {
+                                    row.classList.add('hidden');
+                                }
+                            });
+                        });
+                </script>
+                <script>
+                    document
+                        .getElementById('setCreditSettingsForm')
+                        .addEventListener('submit', async function (e) {
+                            e.preventDefault();
+
+                            // Retrieve form values
+                            const subscriptionPlan =
+                                document.getElementById(
+                                    'subscriptionPlan'
+                                ).value;
+                            const videoEditorCredits =
+                                parseInt(
+                                    document.getElementById(
+                                        'videoEditorCredits'
+                                    ).value
+                                ) || 0;
+                            const videoRestyleCredits =
+                                parseInt(
+                                    document.getElementById(
+                                        'videoRestyleCredits'
+                                    ).value
+                                ) || 0;
+                            const videoVoicingCredits =
+                                parseInt(
+                                    document.getElementById(
+                                        'videoVoicingCredits'
+                                    ).value
+                                ) || 0;
+                            const myAvatarCredits =
+                                parseInt(
+                                    document.getElementById('myAvatarCredits')
+                                        .value
+                                ) || 0;
+                            const lipSyncCredits =
+                                parseInt(
+                                    document.getElementById('lipSyncCredits')
+                                        .value
+                                ) || 0;
+                            const faceSwapCredits =
+                                parseInt(
+                                    document.getElementById('faceSwapCredits')
+                                        .value
+                                ) || 0;
+                            const threeDVideoModelingCredits =
+                                parseInt(
+                                    document.getElementById(
+                                        'threeDVideoModelingCredits'
+                                    ).value
+                                ) || 0;
+
+                            // Reference to the message container and text elements
+                            const messageContainer =
+                                document.getElementById('messageContainer');
+                            const messageText =
+                                document.getElementById('messageText');
+
+                            try {
+                                await axios.post('/set-credits', {
+                                    subscriptionPlan,
+                                    credits: [
+                                        {
+                                            feature: 'videoEditor',
+                                            credits: videoEditorCredits,
+                                        },
+                                        {
+                                            feature: 'videoRestyle',
+                                            credits: videoRestyleCredits,
+                                        },
+                                        {
+                                            feature: 'videoVoicing',
+                                            credits: videoVoicingCredits,
+                                        },
+                                        {
+                                            feature: 'myAvatar',
+                                            credits: myAvatarCredits,
+                                        },
+                                        {
+                                            feature: 'lipSync',
+                                            credits: lipSyncCredits,
+                                        },
+                                        {
+                                            feature: 'faceSwap',
+                                            credits: faceSwapCredits,
+                                        },
+                                        {
+                                            feature: '3dVideoModeling',
+                                            credits: threeDVideoModelingCredits,
+                                        },
+                                    ],
+                                });
+
+                                messageContainer.classList.remove('hidden');
+                                messageText.textContent =
+                                    'Credits Successfully Set';
+                                messageContainer.classList.add(
+                                    'bg-green-100',
+                                    'text-green-800'
+                                );
+                            } catch (error) {
+                                console.error('Error setting credits:', error);
+                                document.getElementById(
+                                    'messageText'
+                                ).textContent = 'Failed to set credits';
+                                document
+                                    .getElementById('messageContainer')
+                                    .classList.remove('hidden');
+                            }
+                        });
+                </script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const ids = [
+                            'videoEditor',
+                            'videoRestyle',
+                            'videoVoicing',
+                            'lipSync',
+                            'faceSwap',
+                            'threeDVideoModeling',
+                            'myAvatar',
+                        ];
+
+                        ids.forEach((id) => {
+                            const toggle = document.getElementById(
+                                `toggle-${id}`
+                            );
+                            const label = document.getElementById(
+                                `label-${id}`
+                            );
+                            const key = `dashboardVisibility-${id}`;
+
+                            // Check the saved state and apply it
+                            const savedState =
+                                localStorage.getItem(key) === 'true';
+                            toggle.checked = savedState;
+                            label.textContent = savedState ? 'On' : 'Off';
+
+                            // Add event listener for toggle changes
+                            toggle.addEventListener('change', () => {
+                                const isVisible = toggle.checked; // Correctly assign the toggle state
+                                localStorage.setItem(key, isVisible);
+                                setDashboardVisibility(id, isVisible);
+                                label.textContent = isVisible ? 'On' : 'Off';
+                            });
+                        });
+
+                        function setDashboardVisibility(id, isVisible) {
+                            axios
+                                .post('/api/toggle-dashboard-visibility', {
+                                    cardId: id,
+                                    isVisible: isVisible, // Send the correct value to the server
+                                })
+                                .then((response) => {
+                                    console.log(
+                                        `Visibility setting updated for ${id}: ${isVisible}`
+                                    );
+                                })
+                                .catch((error) => {
+                                    console.error(
+                                        `Error updating visibility setting for ${id}:`,
+                                        error
+                                    );
+                                });
+                        }
+                    });
+                </script>
+                <script>
+                    function openMediaModal(projectId) {
+                        // Fetch the project media files from the server
+                        axios
+                            .get(`/api/admin/get-project-media/${projectId}`)
+                            .then((response) => {
+                                const { videoFiles, pictureFiles, audioFiles } =
+                                    response.data;
+
+                                // Populate the modal with media files
+                                const videoList =
+                                    document.getElementById('videoList');
+                                const pictureList =
+                                    document.getElementById('pictureList');
+                                const audioList =
+                                    document.getElementById('audioList');
+
+                                videoList.innerHTML = '';
+                                pictureList.innerHTML = '';
+                                audioList.innerHTML = '';
+
+                                videoFiles.forEach((video, index) => {
+                                    const videoItem =
+                                        document.createElement('li');
+                                    videoItem.innerHTML = `
+                    <video controls class="w-full mb-2 rounded-lg">
+                        <source src="${video}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <a href="${video}" download class="text-blue-500 hover:underline">Download Video ${
+                                        index + 1
+                                    }</a>
+                `;
+                                    videoList.appendChild(videoItem);
+                                });
+
+                                pictureFiles.forEach((picture, index) => {
+                                    const pictureItem =
+                                        document.createElement('li');
+                                    pictureItem.innerHTML = `
+                    <img src="${picture}" class="w-full mb-2 rounded-lg">
+                    <a href="${picture}" download class="text-blue-500 hover:underline">Download Picture ${
+                                        index + 1
+                                    }</a>
+                `;
+                                    pictureList.appendChild(pictureItem);
+                                });
+
+                                audioFiles.forEach((audio, index) => {
+                                    const audioItem =
+                                        document.createElement('li');
+                                    audioItem.innerHTML = `
+                    <audio controls class="w-full mb-2">
+                        <source src="${audio}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="${audio}" download class="text-blue-500 hover:underline">Download Audio ${
+                                        index + 1
+                                    }</a>
+                `;
+                                    audioList.appendChild(audioItem);
+                                });
+
+                                // Show the modal
+                                const modal =
+                                    document.getElementById('mediaModal');
+                                modal.classList.remove('hidden');
+                                modal.classList.add('flex');
+                            })
+                            .catch((error) => {
+                                console.error(
+                                    'Failed to fetch project media:',
+                                    error
+                                );
+                            });
+                    }
+
+                    function closeMediaModal() {
+                        const modal = document.getElementById('mediaModal');
+                        modal.classList.add('hidden');
+                        modal.classList.remove('flex');
+                    }
+                </script>
+                <script>
+                    // public/admin-register.js
+                    document
+                        .getElementById('admin-register-form')
+                        .addEventListener('submit', async (event) => {
+                            event.preventDefault();
+
+                            const email =
+                                document.getElementById('email').value;
+                            const password =
+                                document.getElementById('password').value;
+                            const isSuperuser =
+                                document.getElementById('isSuperuser').checked;
+                            const messageDiv =
+                                document.getElementById('message');
+
+                            try {
+                                const response = await axios.post(
+                                    '/admin/register',
+                                    {
+                                        email,
+                                        password,
+                                        isSuperuser,
+                                    }
+                                );
+
+                                messageDiv.textContent =
+                                    'Admin created successfully';
+                                messageDiv.style.color = 'green';
+                            } catch (error) {
+                                console.error(error);
+                                messageDiv.textContent = 'Error creating admin';
+                                messageDiv.style.color = 'red';
+                            }
+                        });
+                </script>
+                <script>
+                    const sidebarLinks =
+                        document.querySelectorAll('.cursor-pointer');
+                    const sections = document.querySelectorAll(
+                        '#manageAdminSection, #manageAvatarSection, #managePackageAndPricingSection, #manageUsersSection, #manageProjectsSection, #toggleVisabilitySection, #manageSubmitsAndPricingSection, #changeAdminPasswordSection, #adminListSection'
+                    );
+
+                    // Function to hide all sections
+                    const hideAllSections = () => {
+                        sections.forEach((section) =>
+                            section.classList.add('hidden')
+                        );
+                    };
+
+                    // Function to show the relevant section
+                    const showSection = (sectionId) => {
+                        hideAllSections();
+                        document
+                            .getElementById(sectionId)
+                            .classList.remove('hidden');
+                    };
+
+                    // Event listener for sidebar links
+                    sidebarLinks.forEach((link) => {
+                        link.addEventListener('click', (e) => {
+                            const targetId = e.target.id;
+
+                            if (targetId === 'manageAdminBtn') {
+                                showSection('manageAdminSection');
+                            } else if (targetId === 'manageUsersBtn') {
+                                showSection('manageUsersSection');
+                            } else if (targetId === 'manageProjectsBtn') {
+                                showSection('manageProjectsSection');
+                            } else if (targetId === 'toggleVisability') {
+                                showSection('toggleVisabilitySection');
+                            } else if (targetId === 'manageSubmitsAndPricing') {
+                                showSection('manageSubmitsAndPricingSection');
+                            } else if (
+                                targetId === 'changeAdminPasswordSectionBtn'
+                            ) {
+                                showSection('changeAdminPasswordSection');
+                            } else if (targetId === 'adminListBtn') {
+                                showSection('adminListSection');
+                            } else if (targetId === 'registerAdmin') {
+                                showSection('manageAdminSection');
+                            } else if (targetId === 'manageAvatarBtn') {
+                                showSection('manageAvatarSection');
+                            }
+
+                            // Toggle visibility of nested ul elements
+                            const nestedUl = e.target.nextElementSibling;
+                            if (nestedUl && nestedUl.tagName === 'UL') {
+                                nestedUl.classList.toggle('hidden');
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    document
+                        .getElementById('admin-password-form')
+                        .addEventListener('submit', async function (event) {
+                            event.preventDefault();
+
+                            const email =
+                                document.getElementById('email').value;
+                            const password =
+                                document.getElementById('password').value;
+
+                            try {
+                                const response = await axios.post(
+                                    '/admin/adminChangePassword',
+                                    { email, password }
+                                );
+
+                                if (response.status === 200) {
+                                    document.getElementById(
+                                        'changePasswordMessage'
+                                    ).textContent =
+                                        'Password changed successfully!';
+                                    document
+                                        .getElementById('changePasswordMessage')
+                                        .classList.add('text-green-500');
+                                }
+                            } catch (error) {
+                                document.getElementById(
+                                    'changePasswordMessage'
+                                ).textContent =
+                                    error.response.data.msg ||
+                                    'Error changing password';
+                                document
+                                    .getElementById('changePasswordMessage')
+                                    .classList.add('text-red-500');
+                            }
+                        });
+
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const adminTableBody =
+                            document.querySelector('#adminTable tbody');
+
+                        // Fetch the admin data from the API
+                        fetch('/admin/admins')
+                            .then((response) => response.json())
+                            .then((admins) => {
+                                // Clear the table body
+                                adminTableBody.innerHTML = '';
+
+                                // Populate the table with the fetched admins
+                                admins.forEach((admin) => {
+                                    const row = document.createElement('tr');
+                                    row.classList.add('border-t'); // Add border to each row
+
+                                    const idCell = document.createElement('td');
+                                    idCell.textContent = admin._id;
+                                    idCell.classList.add(
+                                        'py-4',
+                                        'px-6',
+                                        'text-sm',
+                                        'text-gray-700'
+                                    ); // Add Tailwind classes to the cell
+                                    row.appendChild(idCell);
+
+                                    const emailCell =
+                                        document.createElement('td');
+                                    emailCell.textContent = admin.email;
+                                    emailCell.classList.add(
+                                        'py-4',
+                                        'px-6',
+                                        'text-sm',
+                                        'text-gray-700'
+                                    ); // Add Tailwind classes to the cell
+                                    row.appendChild(emailCell);
+
+                                    const isSuperUserCell =
+                                        document.createElement('td');
+                                    isSuperUserCell.textContent =
+                                        admin.isSuperuser ? 'Yes' : 'No';
+                                    isSuperUserCell.classList.add(
+                                        'py-4',
+                                        'px-6',
+                                        'text-sm',
+                                        'text-gray-700'
+                                    ); // Add Tailwind classes to the cell
+                                    row.appendChild(isSuperUserCell);
+
+                                    const actionsCell =
+                                        document.createElement('td');
+                                    actionsCell.classList.add(
+                                        'py-4',
+                                        'px-6',
+                                        'text-sm',
+                                        'text-gray-700'
+                                    ); // Add Tailwind classes to the cell
+                                    const deleteButton =
+                                        document.createElement('button');
+                                    deleteButton.textContent = 'Delete';
+                                    deleteButton.classList.add(
+                                        'bg-red-500',
+                                        'hover:bg-red-600',
+                                        'text-white',
+                                        'font-bold',
+                                        'py-1',
+                                        'px-3',
+                                        'rounded'
+                                    ); // Add Tailwind classes to the button
+                                    deleteButton.addEventListener('click', () =>
+                                        handleDelete(admin._id)
+                                    );
+                                    actionsCell.appendChild(deleteButton);
+                                    row.appendChild(actionsCell);
+
+                                    adminTableBody.appendChild(row);
+                                });
+                            })
+                            .catch((error) =>
+                                console.error('Error fetching admins:', error)
+                            );
+                    });
+
+                    // Handle delete action
+                    function handleDelete(adminId) {
+                        if (
+                            confirm(
+                                'Are you sure you want to delete this admin?'
+                            )
+                        ) {
+                            fetch(`/admin/admins/${adminId}`, {
+                                method: 'DELETE',
+                            })
+                                .then((response) => response.json())
+                                .then((result) => {
+                                    alert(result.message);
+                                    location.reload(); // Reload the page to reflect changes
+                                })
+                                .catch((error) =>
+                                    console.error(
+                                        'Error deleting admin:',
+                                        error
+                                    )
+                                );
+                        }
+                    }
+                </script>
+                <script>
+                    document
+                        .getElementById('logoutBtn')
+                        .addEventListener('click', function (event) {
+                            event.preventDefault(); // Prevent the default link behavior
+
+                            // Send a GET request to the logout endpoint
+                            fetch('/admin/logout', {
+                                method: 'GET',
+                                credentials: 'include', // Include cookies in the request
+                            })
+                                .then((response) => {
+                                    if (response.ok) {
+                                        // Redirect to login page after successful logout
+                                        window.location.href =
+                                            '/admin-login.html';
+                                    } else {
+                                        console.error('Logout failed');
+                                    }
+                                })
+                                .catch((error) => {
+                                    console.error(
+                                        'An error occurred during logout:',
+                                        error
+                                    );
+                                });
+                        });
+                </script>
+
+                <script src="./js/create-avatar.js"></script>
+                <script src="./js/create-plan.js"></script>
+            </div>
+        </div>
+    </body>
+</html>

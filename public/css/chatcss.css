@@ -1,0 +1,43 @@
+.chat-wrapper {
+    position: relative;
+    max-width: 100%;
+    margin: 20px 0;
+}
+
+.toggle-chat-btn {
+    background-color: #4a76a8;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.toggle-chat-btn:hover {
+    background-color: #df1b28;
+}
+
+.chat-container {
+    background-color: #6b1de1;
+    border-radius: 10px;
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 10px;
+    max-height: 500px;
+}
+
+.tawk-chat-area {
+    height: 350px;
+}
+
+.hidden {
+    display: none;
+}
+
+.expanded {
+    display: block;
+}
