@@ -1,4 +1,3 @@
-// Register
 document
     .getElementById('signup-form')
     .addEventListener('submit', async function (event) {
@@ -14,13 +13,6 @@ document
             data[key] = value;
         });
 
-        // const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[a-zA-Z])[A-Za-z\d]{6,}$/;
-        // if (!passwordRegex.test(data.password)) {
-        //     signupMessage.innerText = 'Password must be at least 6 characters long, include at least one uppercase letter, one lowercase letter, and one digit.';
-        //     signupMessage.style.color = 'lightcoral';
-        //     return;
-        // }
-
         if (data.password !== data.confirmPassword) {
             signupMessage.innerText = 'Passwords do not match.';
             signupMessage.style.color = 'lightcoral';
@@ -33,6 +25,13 @@ document
             if (response.status === 200) {
                 signupMessage.innerText = response.data.msg;
                 signupMessage.style.color = 'lightgreen';
+
+                if (response.data.redirect) {
+                    // Wait for 2 seconds before redirecting
+                    setTimeout(() => {
+                        window.location.href = response.data.redirect;
+                    }, 2000);
+                }
             } else {
                 signupMessage.innerText = response.data.msg
                     ? response.data.msg

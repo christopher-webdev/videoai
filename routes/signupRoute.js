@@ -104,21 +104,48 @@ router.post(
 
         try {
             // Check if the user already exists
-            if (await User.exists({ email })) {
-                return res.status(400).json({ msg: 'User already exists' });
+            const existingUser = await User.findOne({ email });
+
+            if (existingUser) {
+                if (existingUser.isVerified) {
+                    return res
+                        .status(400)
+                        .json({ msg: 'User already registered and verified' });
+                }
+
+                // Generate a new verification token and send a new verification email
+                const verificationToken = crypto
+                    .randomBytes(32)
+                    .toString('hex');
+                const verificationLink = `https://eldravideo.com/auth/verify-email?token=${verificationToken}`;
+
+                existingUser.verificationToken = verificationToken;
+                await existingUser.save();
+
+                await transporter.sendMail({
+                    to: existingUser.email,
+                    from: 'cvideoai@gmail.com',
+                    subject: 'Email Verification',
+                    html: `<p>Please verify your email by clicking the following link: <a href="${verificationLink}">Verify Email</a></p>`,
+                });
+
+                // Respond with a message and a redirect flag
+                return res.status(200).json({
+                    msg: 'Verification email sent again',
+                    redirect: '/email-verification.html',
+                });
             }
 
+            // If user does not exist, proceed with sign-up
             let plan = await Package.findOne({ name: EPackage.Free.name });
             if (!plan) {
-                plan = await Package.create({name: EPackage.Free.name})
+                plan = await Package.create({ name: EPackage.Free.name });
             }
 
             const verificationToken = crypto.randomBytes(32).toString('hex');
-
             const verificationLink = `https://eldravideo.com/auth/verify-email?token=${verificationToken}`;
 
             const credit = await SubscriptionPlan.create({ plan: plan.name });
-
 
             const user = await User.create({
                 firstName,
@@ -127,21 +154,11 @@ router.post(
                 password,
                 isVerified: false,
                 verificationToken,
-
                 subscriptionPlan: plan.name || 'Free', // Set default subscription plan
                 activePackage: plan.id,
-                // subscriptionPlan: subscriptionPlan || 'Free', // Set default subscription plan
-
                 referral_id, // Include generated referral_id
                 referral, // Referral from the request body
             });
-
-
-            if(referral){
-                const affiliate = await AffiliateSys.findOne().select("signupEarning")
-                const refereredBy = await User.findOne({referral_id: referral})
-                await user.updateOne({referredBy: refereredBy._id, $inc: {total_earned: affiliate.signupEarning}})
-            }
 
             // Save the user to the database
             await user.save();
@@ -157,7 +174,11 @@ router.post(
                 html: `<p>Please verify your email by clicking the following link: <a href="${verificationLink}">Verify Email</a></p>`,
             });
 
-            res.status(200).json({ msg: 'Verification email sent' });
+            // Respond with a message and a redirect flag
+            res.status(200).json({
+                msg: 'Verification email sent',
+                redirect: '/email-verification.html',
+            });
         } catch (err) {
             console.error(err.message);
             res.status(500).json({ msg: 'Server error' });

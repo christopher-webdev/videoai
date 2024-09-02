@@ -512,6 +512,10 @@ app.get('/email-verified', (req, res) => {
     res.set('Cache-Control', 'no-store');
     res.sendFile(path.join(__dirname, 'public', 'email-verified.html'));
 });
+app.get('/email-verification.html', (req, res) => {
+    res.set('Cache-Control', 'no-store');
+    res.sendFile(path.join(__dirname, 'public', 'email-verification.html'));
+});
 //rest password token rest link
 app.get('/reset-password/:token', async (req, res) => {
     const { token } = req.params;
