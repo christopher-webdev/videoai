@@ -41,6 +41,13 @@
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap"
             rel="stylesheet"
         />
+        
+
+         <!-- ///////////////////////////////////// -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- ///////////////////////////////////// -->
         <style>
             .dot {
                 transition: transform 0.2s ease-in-out;
@@ -412,8 +419,147 @@
     </head>
 
     <body class="bg-light">
+
+
+        <div class="d-flex">
+            <nav class="sidebar p-3">
+                <h4 class="mb-4">Admin Dashboard</h4>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link text-white active" href="#" id="manageDashboardBtn">
+                            <i class="fa fa-desktop"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#" id="manageAdminBtn">
+                            Manage Admin
+                        </a>
+                        <ul class="nav flex-column ml-3" id="allAdminFunctions" style="display: none;">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#" id="registerAdmin">
+                                    🚀 Register Admin
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#" id="changeAdminPasswordSectionBtn">
+                                    🚀 Change Admin Password
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#" id="adminListBtn">
+                                    🚀 Admin List
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#" id="manageUsersBtn">
+                            Manage Users
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#" id="manageSubmitsAndPricingBtn">
+                            Manage User Submits and Pricing
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#" id="manageProjectAiBtn">
+                            Manage Projects
+                        </a>
+                        <ul class="nav flex-column ml-3" id="manageProjectslinkBtn" style="display: none;">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#" data-category="">
+                                    🚀 All Projects
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#" data-category="Video Editor AI">
+                                    🚀 Video Editor
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#" data-category="Video Restyling AI">
+                                    🚀 Video Restyle
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#" data-category="Video Voicing">
+                                    🚀 Video Voicing
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#" data-category="Lip Sync AI">
+                                    🚀 Lip Sync
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#" data-category="Face Swap AI">
+                                    🚀 Face Swap
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#" data-category="3D Video Modeling AI">
+                                    🚀 3D Video Modeling
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#" data-category="Add Avatar">
+                                    🚀 My Avatar
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#" id="managePlanBtn">
+                            Manage Plans Pricing View
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#" id="addPlanBtn">
+                            Add More Pricing Plan View
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#" id="manageComparisonBtn">
+                            Manage Pricing Plan View Comparison
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#" id="addComparisonBtn">
+                            Add More Pricing Plan Comparison
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="manageavatar.html" id="manageAvatarBtn">
+                            Manage Avatar
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="manageplanx.html" id="managePackagesBtn">
+                            Manage subscription Plans and Packages
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#" id="manageVideoBtn">
+                            Add videos & Manage Affiliate
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#" id="manageNewsletterBtn">
+                            Manage Newsletter
+                        </a>
+                    </li>
+                    <li class="nav-item mt-auto">
+                        <a class="nav-link text-white" href="/logout" id="logoutBtn">
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!--
         <div class="flex">
-            <!-- Sidebar -->
+             Sidebar
             <div class="w-64 h-screen bg-dark sidebar text-white Sidebar--bars">
                 <div class="p-4 text-2xl font-semibold">Admin Dashboard</div>
                 <div class="sideBar">
@@ -585,7 +731,7 @@
                     <a href="/logout">Logout</a>
                 </li>
             </div>
-
+        -->
             <!-- Main Content -->
 
             <div class="flex-1 p-1">
