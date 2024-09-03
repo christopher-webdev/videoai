@@ -114,7 +114,7 @@
                                 <ul class="mainmenu">
                                     <li><a href="index.html">Home</a></li>
                                     <li><a href="pricing.html">Pricing</a></li>
-
+                                    <li><a href="roadmap.html">Roadmap</a></li>
                                     <li>
                                         <a href="utilize.html">How to use</a>
                                     </li>
@@ -180,12 +180,18 @@
                     <div class="content">
                         <ul class="mainmenu">
                             <li><a href="index.html">Home</a></li>
-                            <li><a href="pricing.html">Pricing</a></li>
-
-                            <li><a href="utilize.html">How to use</a></li>
-                            <li><a href="affiliate.html">Affiliate</a></li>
-                            <li><a href="contact.html">Contact us</a></li>
-                            <li><a href="login.html">Sign in</a></li>
+                                    <li><a href="pricing.html">Pricing</a></li>
+                                    <li><a href="roadmap.html">Roadmap</a></li>
+                                    <li>
+                                        <a href="utilize.html">How to use</a>
+                                    </li>
+                                    <li>
+                                        <a href="affiliate.html">Affiliate</a>
+                                    </li>
+                                    <li>
+                                        <a href="contact.html">Contact us</a>
+                                    </li>
+                                    <li><a href="login.html">Sign in</a></li>
                         </ul>
                         <div class="rbt-sm-separator"></div>
                         <div class="rbt-default-sidebar-wrapper">
@@ -796,14 +802,70 @@ document.getElementById('sendMessageBtn').addEventListener('click', function (ev
             </div>
             <!-- End Contact Area  -->
 
+            <style>
+                /* Ensure the footer container takes full width */
+                footer,
+                .copyright-area {
+                    width: 100%;
+                }
+
+                /* Ensure the columns do not wrap */
+                .rowx {
+                    display: flex;
+                }
+
+                /* Adjust column width for newsletter section */
+                .col-lg-2.newsletter {
+                    flex: 2 1 40%; /* Takes more space (40%) */
+                }
+
+                /* Adjust column width for other sections */
+                .col-lg-2:not(.newsletter) {
+                    flex: 1 1 15%; /* Equal size for other sections (15%) */
+                }
+
+                /* Add some space between columns */
+                .rainbow-footer-widget {
+                    margin-right: 20px; /* Space between columns */
+                }
+
+                /* Responsive adjustments for smaller screens */
+                @media (max-width: 992px) {
+                    .col-lg-2.newsletter {
+                        flex: 1 1 33.3333%; /* 3 columns on medium screens */
+                    }
+
+                    .col-lg-2:not(.newsletter) {
+                        flex: 1 1 33.3333%; /* 3 columns on medium screens */
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    .col-lg-2,
+                    .col-lg-3 {
+                        flex: 1 1 50%; /* 2 columns on small screens */
+                    }
+                }
+
+                @media (max-width: 576px) {
+                    .col-lg-2,
+                    .col-lg-3 {
+                        flex: 1 1 100%; /* 1 column on extra-small screens */
+                    }
+                }
+            </style>
+
             <!-- Start Footer Area  -->
             <footer
                 class="rainbow-footer footer-style-default footer-style-3 position-relative"
             >
                 <div class="footer-top">
                     <div class="container">
-                        <div class="row justify-content-between">
-                            <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                        <div class="rowx">
+                            <!-- Logo and Newsletter Section -->
+                            <div
+                                class="col-lg-2 col-md-6 col-sm-12 col-12 newsletter"
+                            >
                                 <div class="rainbow-footer-widget">
                                     <div class="logo">
                                         <a href="index.html">
@@ -814,19 +876,19 @@ document.getElementById('sendMessageBtn').addEventListener('click', function (ev
                                             />
                                         </a>
                                     </div>
-                                    <!-- <p class="b1 desc-text">
-                                        It has long been known that a reader's
-                                        <br />
-                                        attention will be diverted from
-                                    </p> -->
+                                    <p class="b1 desc-text">
+                                        Cashvipe<br />
+                                        Powerful Intelligent video editing tool
+                                    </p>
                                     <h6 class="subtitle">Join a Newsletter</h6>
                                     <form
-                                    class="newsletter-form"
-                                    id="newsletterForm"
+                                        class="newsletter-form"
+                                        id="newsletterForm"
                                     >
                                         <div class="form-group">
                                             <input
                                                 type="email"
+                                                id="emailInput"
                                                 placeholder="Enter Your Email Here"
                                             />
                                             <button
@@ -839,8 +901,14 @@ document.getElementById('sendMessageBtn').addEventListener('click', function (ev
                                             </button>
                                         </div>
                                     </form>
+                                    <div
+                                        id="subscriptionMessage"
+                                        class="mt-4 text-green-600"
+                                    ></div>
                                 </div>
                             </div>
+
+                            <!-- Quick Links Section -->
                             <div class="col-lg-2 col-md-6 col-sm-6 col-12">
                                 <div class="rainbow-footer-widget">
                                     <div class="widget-menu-bottom">
@@ -872,12 +940,14 @@ document.getElementById('sendMessageBtn').addEventListener('click', function (ev
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Services Section -->
                             <div class="col-lg-2 col-md-6 col-sm-6 col-12">
                                 <div class="rainbow-footer-widget">
                                     <div class="widget-menu-top">
-                                        <!-- <h4 class="title">Services</h4> -->
+                                        <h4 class="title">Services</h4>
                                         <div class="inner">
-                                            <!-- <ul class="footer-link link-hover">
+                                            <ul class="footer-link link-hover">
                                                 <li>
                                                     <a href=""
                                                         >Video Generator</a
@@ -895,16 +965,86 @@ document.getElementById('sendMessageBtn').addEventListener('click', function (ev
                                                     <a href="">Subtitling</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#"
+                                                    <a href=""
                                                         >Education Feedback</a
                                                     >
                                                 </li>
-                                            </ul> -->
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+
+                            <!-- Follow Us Section -->
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                                <div class="rainbow-footer-widget">
+                                    <div class="widget-menu-top">
+                                        <h4 class="title">Follow Us</h4>
+                                        <div class="inner">
+                                            <ul class="footer-social-links">
+                                                <li>
+                                                    <a
+                                                        href="https://www.facebook.com/yourprofile"
+                                                        target="_blank"
+                                                        title="Facebook"
+                                                        ><i
+                                                            class="fa fa-facebook-f"
+                                                        ></i>
+                                                        Facebook</a
+                                                    >
+                                                </li>
+                                                <li>
+                                                    <a
+                                                        href="https://www.instagram.com/yourprofile"
+                                                        target="_blank"
+                                                        title="Instagram"
+                                                        ><i
+                                                            class="fa fa-instagram"
+                                                        ></i>
+                                                        Instagram</a
+                                                    >
+                                                </li>
+                                                <li>
+                                                    <a
+                                                        href="https://twitter.com/yourprofile"
+                                                        target="_blank"
+                                                        title="Twitter"
+                                                        ><i
+                                                            class="fa fa-twitter"
+                                                        ></i>
+                                                        Twitter</a
+                                                    >
+                                                </li>
+                                                <li>
+                                                    <a
+                                                        href="https://www.linkedin.com/in/yourprofile"
+                                                        target="_blank"
+                                                        title="LinkedIn"
+                                                        ><i
+                                                            class="fa fa-linkedin-in"
+                                                        ></i>
+                                                        LinkedIn</a
+                                                    >
+                                                </li>
+                                                <li>
+                                                    <a
+                                                        href="https://www.youtube.com/c/yourchannel"
+                                                        target="_blank"
+                                                        title="YouTube"
+                                                        ><i
+                                                            class="fa fa-youtube"
+                                                        ></i>
+                                                        YouTube</a
+                                                    >
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Contact Section -->
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-12">
                                 <div class="rainbow-footer-widget">
                                     <div class="widget-menu-top">
                                         <h4 class="title">Contact</h4>
@@ -912,7 +1052,7 @@ document.getElementById('sendMessageBtn').addEventListener('click', function (ev
                                             <ul
                                                 class="footer-link contact-link"
                                             >
-                                                <!-- <li>
+                                                <li>
                                                     <i
                                                         class="contact-icon fa-regular fa-location-dot"
                                                     ></i
@@ -920,13 +1060,13 @@ document.getElementById('sendMessageBtn').addEventListener('click', function (ev
                                                         >12349 KIMO street off
                                                         Earths location</a
                                                     >
-                                                </li> -->
+                                                </li>
                                                 <li>
                                                     <i
                                                         class="contact-icon fa-sharp fa-regular fa-envelope"
                                                     ></i
                                                     ><a href="#"
-                                                        >cvideoai@gmail.com.com</a
+                                                        >example@domain.com</a
                                                     >
                                                 </li>
                                                 <li>
@@ -945,41 +1085,45 @@ document.getElementById('sendMessageBtn').addEventListener('click', function (ev
                         </div>
                     </div>
                 </div>
-            </footer>
-            <!-- End Footer Area  -->
-            <!-- Start Copy Right Area  -->
-            <div class="copyright-area copyright-style-one">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 col-md-8 col-sm-12 col-12">
-                            <div class="copyright-left">
-                                <ul class="ft-menu link-hover">
-                                    <li>
-                                        <a href="privacy-policy.html"
-                                            >Privacy Policy</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a href="contact.html">Contact Us</a>
-                                    </li>
-                                </ul>
+
+                <!-- Copyright Area -->
+                <div class="copyright-area copyright-style-one">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 col-md-8 col-sm-12 col-12">
+                                <div class="copyright-left">
+                                    <ul class="ft-menu link-hover">
+                                        <li>
+                                            <a href="privacy-policy.html"
+                                                >Privacy Policy</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a href="contact.html"
+                                                >Contact Us</a
+                                            >
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-6 col-md-4 col-sm-12 col-12">
-                            <div
-                                class="copyright-right text-center text-lg-end"
-                            >
-                                <p class="copyright-text">
-                                    Copyright © 2024
-                                    <a href="" class="btn-read-more"
-                                        ><span>Cashvipe</span></a
-                                    >
-                                </p>
+                            <div class="col-lg-6 col-md-4 col-sm-12 col-12">
+                                <div
+                                    class="copyright-right text-center text-lg-end"
+                                >
+                                    <p class="copyright-text">
+                                        Copyright © 2024
+                                        <a href="" class="btn-read-more"
+                                            ><span>Cashvipe</span></a
+                                        >
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </footer>
+
+           
             <!-- End Copy Right Area  -->
         </main>
 

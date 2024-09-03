@@ -41,10 +41,12 @@
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap"
             rel="stylesheet"
         />
-        
 
-         <!-- ///////////////////////////////////// -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <!-- ///////////////////////////////////// -->
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <!-- ///////////////////////////////////// -->
@@ -61,30 +63,7 @@
                 transform: translateX(100%);
             }
         </style>
-        <style>
-            /* Custom class for the <a> elements */
-            .custom-li {
-                color: #f97316;
-                /* Tailwind's text-orange-500 */
-                background-color: transparent;
-                /* Default background color */
-                padding: 0.5rem 1rem;
-                /* px-4 py-2 */
-                border-radius: 0.5rem;
-                /* rounded-lg */
-                transition: color 0.3s ease, background-color 0.3s ease;
-                /* transition-colors duration-300 */
-                text-decoration: none;
-                /* Remove underline from links */
-            }
-
-            .custom-li:hover {
-                color: #f97316;
-                /* Tailwind's hover:text-orange-700 (same color in this example) */
-                background-color: #fef3c7;
-                /* Tailwind's hover:bg-orange-100 */
-            }
-        </style>
+        <style></style>
         <style>
             /* Base Styling */
             body {
@@ -419,311 +398,168 @@
     </head>
 
     <body class="bg-light">
+        <div class="flex">
+            <div class="w-64 h-screen bg-dark sidebar text-white Sidebar--bars">
+                <div class="font-semibold">Admin Dashboard</div>
+                <ul class="mt-8" id="listAllnavigators">
+                    <li
+                        class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer active"
+                        id="manageDAshboardBtn"
+                    >
+                        <span class="fa fa-desktop"></span>
+                        Dashboard
+                    </li>
 
-
-        <div class="d-flex">
-            <nav class="sidebar p-3">
-                <h4 class="mb-4">Admin Dashboard</h4>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link text-white active" href="#" id="manageDashboardBtn">
-                            <i class="fa fa-desktop"></i> Dashboard
-                        </a>
+                    <li
+                        class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                        id="manageAdminBtn"
+                    >
+                        Manage Admin
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#" id="manageAdminBtn">
-                            Manage Admin
-                        </a>
-                        <ul class="nav flex-column ml-3" id="allAdminFunctions" style="display: none;">
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="#" id="registerAdmin">
-                                    🚀 Register Admin
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="#" id="changeAdminPasswordSectionBtn">
-                                    🚀 Change Admin Password
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="#" id="adminListBtn">
-                                    🚀 Admin List
-                                </a>
-                            </li>
-                        </ul>
+                    <ul class="ml-4 mt-2 hidden" id="allAdminFunctions">
+                        <li
+                            class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                            id="registerAdmin"
+                        >
+                            🚀 Register Admin
+                        </li>
+                        <li
+                            class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                            id="changeAdminPasswordSectionBtn"
+                        >
+                            🚀 Change Admin Password
+                        </li>
+                        <li
+                            class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                            id="adminListBtn"
+                        >
+                            🚀 Admin List
+                        </li>
+                    </ul>
+                    <li
+                        class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                        id="manageUsersBtn"
+                    >
+                        Manage Users
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#" id="manageUsersBtn">
-                            Manage Users
-                        </a>
+                    <li
+                        class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                        id="manageSubmitsAndPricingBtn"
+                    >
+                        Manage User Submits and Pricing
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#" id="manageSubmitsAndPricingBtn">
-                            Manage User Submits and Pricing
-                        </a>
+                    <li
+                        class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                        id="manageProjectAiBtn"
+                    >
+                        Manage Projects
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#" id="manageProjectAiBtn">
-                            Manage Projects
-                        </a>
-                        <ul class="nav flex-column ml-3" id="manageProjectslinkBtn" style="display: none;">
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="#" data-category="">
-                                    🚀 All Projects
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="#" data-category="Video Editor AI">
-                                    🚀 Video Editor
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="#" data-category="Video Restyling AI">
-                                    🚀 Video Restyle
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="#" data-category="Video Voicing">
-                                    🚀 Video Voicing
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="#" data-category="Lip Sync AI">
-                                    🚀 Lip Sync
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="#" data-category="Face Swap AI">
-                                    🚀 Face Swap
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="#" data-category="3D Video Modeling AI">
-                                    🚀 3D Video Modeling
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="#" data-category="Add Avatar">
-                                    🚀 My Avatar
-                                </a>
-                            </li>
-                        </ul>
+                    <ul
+                        class="ml-4 mt-2 custom-li hidden"
+                        id="manageProjectslinkBtn"
+                    >
+                        <li
+                            class="px-4 py-2 over:bg-gray-600 cursor-pointer"
+                            data-category=""
+                        >
+                            🚀 All Projects
+                        </li>
+                        <li
+                            class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
+                            data-category="Video Editor AI"
+                        >
+                            🚀 Video Editor
+                        </li>
+                        <li
+                            class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
+                            data-category="Video Restyling AI"
+                        >
+                            🚀 Video Restyle
+                        </li>
+                        <li
+                            class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
+                            data-category="Video Voicing"
+                        >
+                            🚀 Video Voicing
+                        </li>
+                        <li
+                            class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
+                            data-category="Lip Sync AI"
+                        >
+                            🚀 Lip Sync
+                        </li>
+                        <li
+                            class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
+                            data-category="Face Swap AI"
+                        >
+                            🚀 Face Swap
+                        </li>
+                        <li
+                            class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
+                            data-category="3D Video Modeling AI"
+                        >
+                            🚀 3D Video Modeling
+                        </li>
+                        <li
+                            class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
+                            data-category="Add Avatar"
+                        >
+                            🚀 My Avatar
+                        </li>
+                    </ul>
+                    <li
+                        class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                        id="manageplanBtn"
+                    >
+                        Manage Plans Pricing View
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#" id="managePlanBtn">
-                            Manage Plans Pricing View
-                        </a>
+                    <li
+                        class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                        id="addplanBtn"
+                    >
+                        Add More Pricing Plan View
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#" id="addPlanBtn">
-                            Add More Pricing Plan View
-                        </a>
+                    <li
+                        class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                        id="ManageComparisonBtn"
+                    >
+                        Manage Pricing Plan View Comparison
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#" id="manageComparisonBtn">
-                            Manage Pricing Plan View Comparison
-                        </a>
+                    <li
+                        class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                        id="AddComparisonBtn"
+                    >
+                        Add More Pricing Plan Comparison
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#" id="addComparisonBtn">
-                            Add More Pricing Plan Comparison
-                        </a>
+                    <li
+                        class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
+                        id="manageAvatarBtn"
+                    >
+                        <a href="manageavatar.html">Manage Avatar</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="manageavatar.html" id="manageAvatarBtn">
-                            Manage Avatar
-                        </a>
+                    <li
+                        class="router px-4 py-2 hover:bg-gray-600 cursor-pointer"
+                        id="managePackagesBtn"
+                        data-url="manage-packages"
+                    >
+                        <a href="manageplanx.html"
+                            >Manage subscription Plans and Packages</a
+                        >
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="manageplanx.html" id="managePackagesBtn">
-                            Manage subscription Plans and Packages
-                        </a>
+                    <li
+                        class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                        id="manageVideoBtn"
+                    >
+                        Add videos & Manage Affiliate
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#" id="manageVideoBtn">
-                            Add videos & Manage Affiliate
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#" id="manageNewsletterBtn">
-                            Manage Newsletter
-                        </a>
-                    </li>
-                    <li class="nav-item mt-auto">
-                        <a class="nav-link text-white" href="/logout" id="logoutBtn">
-                            Logout
-                        </a>
+                    <li
+                        class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
+                        id="manageNewsletterBtn"
+                    >
+                        Manage Newsletter
                     </li>
                 </ul>
-            </nav>
-        </div>
-        <!--
-        <div class="flex">
-             Sidebar
-            <div class="w-64 h-screen bg-dark sidebar text-white Sidebar--bars">
-                <div class="p-4 text-2xl font-semibold">Admin Dashboard</div>
-                <div class="sideBar">
-                    <div class="sidebar-admin">
-                        <ul class="mt-8" id="listAllnavigators">
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer active"
-                                id="manageDAshboardBtn"
-                            >
-                                <span class="fa fa-desktop"></span>
-                                Dashboard
-                            </li>
 
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                id="manageAdminBtn"
-                            >
-                                Manage Admin
-                            </li>
-                            <ul class="ml-4 mt-2 hidden" id="allAdminFunctions">
-                                <li
-                                    class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                    id="registerAdmin"
-                                >
-                                    🚀 Register Admin
-                                </li>
-                                <li
-                                    class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                    id="changeAdminPasswordSectionBtn"
-                                >
-                                    🚀 Change Admin Password
-                                </li>
-                                <li
-                                    class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                    id="adminListBtn"
-                                >
-                                    🚀 Admin List
-                                </li>
-                            </ul>
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                id="manageUsersBtn"
-                            >
-                                Manage Users
-                            </li>
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                id="manageSubmitsAndPricingBtn"
-                            >
-                                Manage User Submits and Pricing
-                            </li>
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                id="manageProjectAiBtn"
-                            >
-                                Manage Projects
-                            </li>
-                            <ul
-                                class="ml-4 mt-2 custom-li hidden"
-                                id="manageProjectslinkBtn"
-                            >
-                                <li
-                                    class="px-4 py-2 over:bg-gray-600 cursor-pointer"
-                                    data-category=""
-                                >
-                                    🚀 All Projects
-                                </li>
-                                <li
-                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
-                                    data-category="Video Editor AI"
-                                >
-                                    🚀 Video Editor
-                                </li>
-                                <li
-                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
-                                    data-category="Video Restyling AI"
-                                >
-                                    🚀 Video Restyle
-                                </li>
-                                <li
-                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
-                                    data-category="Video Voicing"
-                                >
-                                    🚀 Video Voicing
-                                </li>
-                                <li
-                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
-                                    data-category="Lip Sync AI"
-                                >
-                                    🚀 Lip Sync
-                                </li>
-                                <li
-                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
-                                    data-category="Face Swap AI"
-                                >
-                                    🚀 Face Swap
-                                </li>
-                                <li
-                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
-                                    data-category="3D Video Modeling AI"
-                                >
-                                    🚀 3D Video Modeling
-                                </li>
-                                <li
-                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
-                                    data-category="Add Avatar"
-                                >
-                                    🚀 My Avatar
-                                </li>
-                            </ul>
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                id="manageplanBtn"
-                            >
-                                Manage Plans Pricing View
-                            </li>
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                id="addplanBtn"
-                            >
-                                Add More Pricing Plan View
-                            </li>
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                id="ManageComparisonBtn"
-                            >
-                                Manage Pricing Plan View Comparison
-                            </li>
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                id="AddComparisonBtn"
-                            >
-                                Add More Pricing Plan Comparison
-                            </li>
-                            <li
-                                class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
-                                id="manageAvatarBtn"
-                            >
-                                <a href="manageavatar.html">Manage Avatar</a>
-                            </li>
-                            <li
-                                class="router px-4 py-2 hover:bg-gray-600 cursor-pointer"
-                                id="managePackagesBtn"
-                                data-url="manage-packages"
-                            >
-                                <a href="manageplanx.html"
-                                    >Manage subscription Plans and Packages</a
-                                >
-                            </li>
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                id="manageVideoBtn"
-                            >
-                                Add videos & Manage Affiliate
-                            </li>
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                id="manageNewsletterBtn"
-                            >
-                                Manage Newsletter
-                            </li>
-                        </ul>
-                    </div>
-                </div>
                 <li
                     class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
                     id="logoutBtn"
@@ -731,8 +567,8 @@
                     <a href="/logout">Logout</a>
                 </li>
             </div>
-        -->
-            <!-- Main Content -->
+
+            <!-- ////////////////////////////////////////////////////////////Main Content///////////////////////////////////////////////////////////////////////////////////// -->
 
             <div class="flex-1 p-1">
                 <!--  -->
@@ -2742,291 +2578,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- ////////////////////////////////////////////////////////////////////////////////////////////Manage  Project Section ////////////////////////////// -->
-                <!-- Manage Projects Section -->
-                <div id="manageProjectsSection" class="hidden">
-                    <h2 class="text-3xl font-semibold text-gray-700 mb-6">
-                        Manage Projects
-                    </h2>
-                    <div class="mb-4">
-                        <input
-                            type="text"
-                            id="projectSearchInput"
-                            class="p-2 border border-gray-300 rounded-md w-full md:w-1/2 lg:w-1/3"
-                            placeholder="Search projects by id and status"
-                        />
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full bg-white text-xs">
-                            <thead class="bg-gray-800 text-white">
-                                <tr>
-                                    <th class="py-2 px-4 border-b text-left">
-                                        #
-                                    </th>
-                                    <th
-                                        class="py-2 px-4 text-xl border-b text-left"
-                                    >
-                                        Project & User ID
-                                    </th>
-                                    <th
-                                        class="py-2 px-4 text-xl border-b text-left"
-                                    >
-                                        Title
-                                    </th>
-                                    <th
-                                        class="py-2 px-4 text-xl border-b text-left"
-                                    >
-                                        Status
-                                    </th>
-                                    <th
-                                        class="py-2 px-4 text-xl border-b text-left"
-                                    >
-                                        Created At
-                                    </th>
-                                    <th
-                                        class="py-2 px-4 text-xl border-b text-left"
-                                    >
-                                        Options
-                                    </th>
-                                    <th
-                                        class="py-2 px-4 text-xl border-b text-left"
-                                    >
-                                        Actions
-                                    </th>
-                                </tr>
-                                <hr class="border-t-2 border-gray-300 my-4" />
-                            </thead>
-                            <tbody
-                                id="projectsTableBody"
-                                class="text-gray-700 text-xl"
-                            >
-                                <!-- Rows will be dynamically inserted here -->
-                            </tbody>
-                        </table>
-
-                        <!-- Status Update Modal -->
-                        <!-- Update Status Modal -->
-                        <!-- Modal Section -->
-                        <div
-                            id="mediaModal"
-                            class="fixed inset-0 z-[100] hidden items-center justify-center bg-black bg-opacity-50"
-                        >
-                            <div
-                                class="bg-white dark:bg-navy-800 rounded-lg shadow-lg p-6 max-w-lg w-full relative overflow-y-auto max-h-screen"
-                            >
-                                <button
-                                    id="closeMediaModal"
-                                    class="absolute top-4 right-4 text-gray-600 dark:text-gray-300"
-                                    onclick="closeMediaModal()"
-                                >
-                                    <svg
-                                        class="w-6 h-6"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M6 18L18 6M6 6l12 12"
-                                        />
-                                    </svg>
-                                </button>
-                                <h2
-                                    class="text-xl font-semibold text-slate-800 dark:text-navy-100 mb-4"
-                                >
-                                    Project Media
-                                </h2>
-                                <ul id="videoList" class="mb-4"></ul>
-                                <ul id="pictureList" class="mb-4"></ul>
-                                <ul id="audioList" class="mb-4"></ul>
-                            </div>
-                        </div>
-
-                        <!-- Buttons and Modals -->
-                        <!-- Media Modal Section -->
-                        <div
-                            id="mediaModal"
-                            class="fixed inset-0 z-[100] hidden items-center justify-center bg-black bg-opacity-50"
-                        >
-                            <div
-                                class="bg-white dark:bg-navy-800 rounded-lg shadow-lg p-6 max-w-lg w-full relative"
-                            >
-                                <button
-                                    id="closeMediaModal"
-                                    class="absolute top-4 right-4 text-gray-600 dark:text-gray-300"
-                                >
-                                    <svg
-                                        class="w-6 h-6"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M6 18L18 6M6 6l12 12"
-                                        />
-                                    </svg>
-                                </button>
-
-                                <h2
-                                    class="text-xl font-semibold text-slate-800 dark:text-navy-100 mb-4"
-                                >
-                                    Project Files
-                                </h2>
-
-                                <!-- Picture Gallery -->
-                                <div id="pictureGallery" class="mb-4"></div>
-
-                                <!-- Audio Player -->
-                                <div id="audioPlayerContainer" class="mb-4">
-                                    <audio
-                                        id="audioPlayer"
-                                        controls
-                                        class="w-full"
-                                    >
-                                        <source
-                                            id="audioSource"
-                                            type="audio/mp3"
-                                        />
-                                        Your browser does not support the audio
-                                        tag.
-                                    </audio>
-                                </div>
-
-                                <!-- Video Player -->
-                                <div id="videoPlayerContainer">
-                                    <video
-                                        id="videoPlayerModal"
-                                        controls
-                                        class="w-full rounded-lg mb-4 bg-gray-800"
-                                    >
-                                        <source
-                                            id="videoSourceModal"
-                                            type="video/mp4"
-                                        />
-                                        Your browser does not support the video
-                                        tag.
-                                    </video>
-                                </div>
-
-                                <a
-                                    id="downloadLinkModal"
-                                    href="#"
-                                    download
-                                    class="btn bg-blue-500 text-white hover:bg-blue-600 focus:bg-blue-700 rounded-md px-4 py-2"
-                                    >Download</a
-                                >
-                            </div>
-                        </div>
-
-                        <div
-                            id="updateStatusModal"
-                            class="hidden fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center"
-                        >
-                            <div
-                                class="bg-white p-6 rounded shadow-lg w-full max-w-md text-xs"
-                            >
-                                <h2 class="text-lg font-bold mb-4">
-                                    Update Project Status
-                                </h2>
-                                <label for="status" class="block mb-2"
-                                    >Status</label
-                                >
-                                <select
-                                    id="status"
-                                    class="block w-full px-4 py-2 border rounded text-gray-700 focus:outline-none focus:border-blue-500"
-                                >
-                                    <option value="Pending">Pending</option>
-                                    <option value="Processing">
-                                        Processing
-                                    </option>
-                                    <option value="Declined">Declined</option>
-                                    <option value="Completed">Completed</option>
-                                </select>
-                                <label for="comment" class="block mt-4 mb-2"
-                                    >Comment</label
-                                >
-                                <textarea
-                                    id="comment"
-                                    class="block w-full px-4 py-2 border rounded text-gray-700 focus:outline-none focus:border-blue-500"
-                                ></textarea>
-                                <label
-                                    for="estimatedTime"
-                                    class="block mt-4 mb-2"
-                                    >Estimated Completion Time</label
-                                >
-                                <input
-                                    type="datetime-local"
-                                    id="estimatedTime"
-                                    class="block w-full px-4 py-2 border rounded text-gray-700 focus:outline-none focus:border-blue-500"
-                                />
-                                <div class="mt-6 flex justify-end">
-                                    <button
-                                        onclick="updateProjectStatus()"
-                                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                                    >
-                                        Update
-                                    </button>
-                                    <button
-                                        onclick="closeUpdateStatusModal()"
-                                        class="ml-2 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
-                                    >
-                                        Cancel
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Reupload Modal -->
-                        <div
-                            id="reuploadModal"
-                            class="hidden fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center"
-                        >
-                            <div
-                                class="bg-white p-6 rounded shadow-lg w-full max-w-md text-xs"
-                            >
-                                <h2 class="text-lg font-bold mb-4">
-                                    Reupload Edited File
-                                </h2>
-                                <input
-                                    type="file"
-                                    id="editedFile"
-                                    class="block w-full px-4 py-2 border rounded text-gray-700 focus:outline-none focus:border-blue-500"
-                                />
-                                <p
-                                    id="uploadingMessage"
-                                    class="hidden text-primary"
-                                ></p>
-                                <div class="mt-6 flex justify-end">
-                                    <button
-                                        onclick="reuploadEditedFile()"
-                                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                                    >
-                                        Upload
-                                    </button>
-                                    <button
-                                        onclick="closeReuploadModal()"
-                                        class="ml-2 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
-                                    >
-                                        Cancel
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Media Modal -->
-                        <div id="mediaModal" class="modal">
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <div id="mediaContainer"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ///////////////////////////////////////// End of Manage Projects////////////////////////////////// -->
 
                 <!-- ////////////////////////////////////////////////////////////////////////////////////////////Manage  Project Section ////////////////////////////// -->
                 <!-- Manage Projects Section -->
@@ -3966,225 +3517,6 @@
                     }
                 }
             });
-
-            //         // Handle form submission
-            //         document.getElementById('subscriptionForm').addEventListener('submit', function (e) {
-            //     e.preventDefault();
-
-            //     const generateUniqueId = () => '_' + Math.random().toString(36).substr(2, 9);
-
-            //     const formData = new FormData(this);
-            //     const jsonData = {};
-
-            //     document.querySelectorAll('.plan-group').forEach((planGroup) => {
-            //         const planId = generateUniqueId();
-            //         const planName = planGroup.querySelector('input[type="text"]').value;
-            //         const dataEntries = [];
-
-            //         planGroup.querySelectorAll('.data-group').forEach((dataGroup) => {
-            //             const dataId = generateUniqueId();
-            //             const dataNameSelect = dataGroup.querySelector('.dataName');
-            //             let dataName = dataNameSelect.value;
-            //             if (dataName === '') {
-            //                 dataName = dataGroup.querySelector('.newDataName').value;
-            //             }
-            //             const subOption = dataGroup.querySelector('.subOption').value;
-            //             const subOptionValue = dataGroup.querySelector('.subOptionValue').value;
-
-            //             dataEntries.push({
-            //                 id: dataId,
-            //                 name: dataName,
-            //                 subOption: subOption,
-            //                 value: subOptionValue
-            //             });
-            //         });
-
-            //         jsonData[planId] = {
-            //             name: planName,
-            //             data: dataEntries
-            //         };
-            //     });
-
-            //     const subscriptionData = [{ plan: jsonData }];
-
-            //     fetch('/auth/submit-plans', {
-            //         method: 'POST',
-            //         headers: {
-            //             'Content-Type': 'application/json',
-            //         },
-            //         body: JSON.stringify(subscriptionData),
-            //     })
-            //     .then(response => response.json())
-            //     .then(data => {
-            //         console.log(data.message);
-            //     })
-            //     .catch((error) => {
-            //         console.error('Error:', error);
-            //     });
-            // });
-
-            //end of compare and features section js
-            document.addEventListener('DOMContentLoaded', function () {
-                async function fetchPlans() {
-                    try {
-                        const response = await fetch('/data/plans.json');
-                        if (!response.ok) {
-                            throw new Error('Failed to load plans');
-                        }
-                        const plans = await response.json();
-                        // console.log('Monthly Plans:', plans); // Log the plans data
-
-                        const tbody =
-                            document.getElementById('plans-table-body');
-                        tbody.innerHTML = ''; // Clear the table body before adding new rows
-                        let x = 0;
-                        plans
-                            .filter((plan) => plan.plan_subscription != '')
-                            .forEach((plan) => {
-                                // console.log('Rendering Monthly Plan:', plan); // Log each plan being rendered
-                                x += 1;
-                                const featuresList = plan.features
-                                    .map(
-                                        (feature) =>
-                                            `<li><span class='badge bg-info'>${feature}</span></li>`
-                                    )
-                                    .join('');
-                                let PlanStatus = '';
-                                if (plan.plan_status != '') {
-                                    PlanStatus = `<span class="badge bg-success">${plan.plan_status}</span>`;
-                                }
-                                const row = `
-                            <tr>
-                                <td>${x}</td>
-                                <td>${plan.plan_title}</td>
-                                <td>${plan.plan_heading}</td>
-                                <td>${plan.plan_price}</td>
-                                <td>${plan.plan_subscription}</td>
-                                <td>${PlanStatus}</td>
-                                <td><ul>${featuresList}</ul></td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div class="col-6">
-                                    <button class="btn btn-sm btn-primary" onclick="editPlan('${plan.plan_id}')">Edit</button>
-                                    </div>
-                                        <div class="col-6">
-                                    <button class="btn btn-sm btn-danger" onclick="deletePlan('${plan.plan_id}')">Delete</button>
-                                </div>
-                                    </td>
-                            </tr>
-                        `;
-
-                                tbody.innerHTML += row;
-                                $('#plansTable').DataTable();
-                                $('#planTable').DataTable();
-                            });
-                    } catch (error) {
-                        console.error('Error loading plans:', error);
-                        const tbody =
-                            document.getElementById('plans-table-body');
-                        tbody.innerHTML =
-                            '<tr><td colspan="7" class="text-danger">Failed to load pricing plans. Please try again later.</td></tr>';
-                    }
-                }
-                fetchPlans();
-            });
-
-            async function deletePlan(planId) {
-                if (confirm('Are you sure you want to delete this plan?')) {
-                    try {
-                        // Send a DELETE request to your backend
-                        const response = await fetch(
-                            `/auth/delete-plans/${planId}`,
-                            {
-                                method: 'DELETE',
-                            }
-                        );
-
-                        if (!response.ok) {
-                            throw new Error('Failed to delete plan');
-                        }
-
-                        // Refresh the plans list
-                        async function fetchPlans() {
-                            try {
-                                const response = await fetch(
-                                    '/data/plans.json'
-                                );
-                                if (!response.ok) {
-                                    throw new Error('Failed to load plans');
-                                }
-                                const plans = await response.json();
-                                // console.log('Monthly Plans:', plans); // Log the plans data
-
-                                const tbody =
-                                    document.getElementById('plans-table-body');
-                                tbody.innerHTML = ''; // Clear the table body before adding new rows
-                                let x = 0;
-                                plans
-                                    .filter(
-                                        (plan) => plan.plan_subscription != ''
-                                    )
-                                    .forEach((plan) => {
-                                        // console.log('Rendering Monthly Plan:', plan); // Log each plan being rendered
-                                        x += 1;
-                                        const featuresList = plan.features
-                                            .map(
-                                                (feature) =>
-                                                    `<li><span class='badge bg-info'>${feature}</span></li>`
-                                            )
-                                            .join('');
-                                        let PlanStatus = '';
-                                        if (plan.plan_status != '') {
-                                            PlanStatus = `<span class="badge bg-success">${plan.plan_status}</span>`;
-                                        }
-                                        const row = `
-                                    <tr>
-                                        <td>${x}</td>
-                                        <td>${plan.plan_title}</td>
-                                        <td>${plan.plan_heading}</td>
-                                        <td>${plan.plan_price}</td>
-                                        <td>${plan.plan_subscription}</td>
-                                        <td>${PlanStatus}</td>
-                                        <td><ul>${featuresList}</ul></td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <div class="col-6">
-                                                    <button class="btn btn-sm btn-primary" onclick="editPlan('${plan.plan_id}')">Edit</button>
-                                                </div>
-                                                <div class="col-6">
-                                                    <button class="btn btn-sm btn-danger" onclick="deletePlan('${plan.plan_id}')">Delete</button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                `;
-
-                                        tbody.innerHTML += row;
-                                    });
-                                $('#plansTable').DataTable();
-                                $('#planTable').DataTable();
-                            } catch (error) {
-                                console.error('Error loading plans:', error);
-                                const tbody =
-                                    document.getElementById('plans-table-body');
-                                tbody.innerHTML =
-                                    '<tr><td colspan="7" class="text-danger">Failed to load pricing plans. Please try again later.</td></tr>';
-                            }
-                        }
-                        fetchPlans();
-                        handleNotificator(
-                            'success',
-                            'Plan deleted successfully'
-                        );
-                    } catch (error) {
-                        console.error('Error deleting plan:', error);
-                        handleNotificator(
-                            'error',
-                            'An error occurred while deleting the plan.'
-                        );
-                    }
-                }
-            }
 
             // Function to add more plans
             let planCount = 1;
@@ -5200,39 +4532,6 @@
                             .classList.add('hidden');
                     });
 
-                // //addplan btn start here
-
-                //                 row.innerHTML = `
-                //                 <td class="py-2 px-4">${index + 1}</td>
-                //                 <td class="py-2 px-4">${user._id}</td>
-                //                 <td class="py-2 px-4">${user.firstName} ${
-                //                     user.lastName || ''
-                //                 }</td>
-                //                 <td class="py-2 px-4">${user.email}</td>
-                //                 <td class="py-2 px-4">${
-                //                     user.phoneNumber || 'N/A'
-                //                 }</td>
-                //                 <td class="py-2 px-4">${user.address || 'N/A'}</td>
-                //                 <td class="py-2 px-4">${user.subscriptionPlan}</td>
-                //                 <td class="py-2 px-4">
-                //                     <button
-                //                         onclick="impersonateUser('${user._id}')"
-                //                         class="text-blue-600 hover:text-blue-800 font-semibold">
-                //                         View User DashBoard
-                //                     </button><br><br>
-                //                     <button
-                //                         onclick="deleteUser('${user._id}')"
-                //                         class="text-red-600 hover:text-red-800 font-semibold">
-                //                         Delete User
-                //                     </button>
-                //                 </td>
-                //             `;
-                //                 userTableBody.appendChild(row);
-                //             });
-                //         } catch (error) {
-                //             console.error('Error fetching users:', error);
-                //         }
-                //     };
                 document
                     .getElementById('addplanBtn')
                     .addEventListener('click', function () {
@@ -5551,6 +4850,42 @@
             });
         </script>
         <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const categoryButtons = document.querySelectorAll(
+                    '#manageProjectslinkBtn li'
+                );
+
+                categoryButtons.forEach((button) => {
+                    button.addEventListener('click', (e) => {
+                        const category = e.target.getAttribute('data-category');
+                        fetchProjects(category);
+                    });
+                });
+
+                // Initial fetch to show all projects sorted by createdAt
+                fetchProjects();
+            });
+            document.addEventListener('DOMContentLoaded', () => {
+                fetchProjects();
+
+                // Event listener for Update Status form submission
+                document
+                    .getElementById('updateStatusForm')
+                    .addEventListener('submit', async (e) => {
+                        e.preventDefault();
+                        await updateProjectStatus();
+                    });
+
+                // Event listener for Reupload form submission
+                document
+                    .getElementById('reuploadForm')
+                    .addEventListener('submit', async (e) => {
+                        e.preventDefault();
+                        await reuploadEditedFile();
+                    });
+            });
+
+            // Add event listeners to all category buttons
             document
                 .querySelectorAll('#manageProjectslinkBtn li')
                 .forEach((btn) => {
@@ -5560,7 +4895,6 @@
                     });
                     fetchProjects();
                 });
-
             async function fetchProjects(category = null) {
                 try {
                     const response = await axios.get('/api/projects');
@@ -5585,26 +4919,26 @@
                         const projectRow = document.createElement('tr');
 
                         const numberCell = document.createElement('td');
-                        numberCell.className = 'py-2 text-xl px-4';
+                        numberCell.className = 'py-2 px-4';
                         numberCell.innerText = index + 1;
                         projectRow.appendChild(numberCell);
 
                         const idCell = document.createElement('td');
-                        idCell.className = 'py-2 text-xl px-4';
+                        idCell.className = 'py-2 px-4';
                         idCell.innerText = `${project._id} / ${project.userId._id}`;
                         projectRow.appendChild(idCell);
 
                         const titleCell = document.createElement('td');
-                        titleCell.className = 'py-2 text-xl px-4';
+                        titleCell.className = 'py-2 px-4';
                         titleCell.innerText = project.title;
                         projectRow.appendChild(titleCell);
 
                         const statusCell = document.createElement('td');
-                        statusCell.className = 'py-2 text-xl px-4';
-                        let statusContent = `Status: ${project.status}`;
+                        statusCell.className = 'py-2 px-4';
+                        let statusContent = `<strong>Status: ${project.status}</strong>`;
 
                         if (project.estimatedCompletionTime) {
-                            statusContent += `<p class="text-xl">ETA: ${new Date(
+                            statusContent += `<p><strong>ETA:</strong> ${new Date(
                                 project.estimatedCompletionTime
                             ).toLocaleString()}</p>`;
                         }
@@ -5618,7 +4952,7 @@
                                     project.statusHistory.length - 1
                                 ];
                             if (latestStatus.comment) {
-                                statusContent += `<p class="text-xl">Comment: ${latestStatus.comment}</p>`;
+                                statusContent += `<p>Comment: ${latestStatus.comment}</p>`;
                             }
                         }
 
@@ -5626,58 +4960,65 @@
                         projectRow.appendChild(statusCell);
 
                         const createdAtCell = document.createElement('td');
-                        createdAtCell.className = 'py-2 text-xl px-4';
+                        createdAtCell.className = 'py-2 px-4';
                         createdAtCell.innerText = new Date(
                             project.createdAt
                         ).toLocaleString();
                         projectRow.appendChild(createdAtCell);
 
                         const optionsCell = document.createElement('td');
-                        optionsCell.className = 'py-2 text-xl px-4';
-
-                        // Display avatar name and location
-                        if (project.avatar) {
-                            optionsCell.innerHTML += `<p class="text-xl">Avatar: ${project.avatar}</p>`;
-                        }
-
-                        if (project.location) {
-                            optionsCell.innerHTML += `<p class="text-xl">Location: ${project.location}</p>`;
-                        }
+                        optionsCell.className = 'py-2 px-4';
 
                         // Display multiple video links
                         if (project.videoLink && project.videoLink.length > 0) {
                             project.videoLink.forEach((link) => {
-                                optionsCell.innerHTML += `<p class="text-xl">Video Link: <a href="${
+                                optionsCell.innerHTML += `<p><strong>Video Link:</strong> <a href="${
                                     link.startsWith('http')
                                         ? link
                                         : `http://${link}`
-                                }" class="text-blue-600 text-xl hover:text-blue-800" target="_blank" rel="noopener noreferrer">${link}</a></p>`;
+                                }" class="text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">${link}</a></p>`;
                             });
+                        }
+
+                        if (project.videoDescription) {
+                            optionsCell.innerHTML += `<p><strong>Description:</strong> ${project.videoDescription}</p>`;
+                        }
+
+                        if (project.orientation) {
+                            optionsCell.innerHTML += `<p><strong>Orientation:</strong> ${project.orientation}</p>`;
+                        }
+
+                        if (project.location) {
+                            optionsCell.innerHTML += `<p><strong>Location:</strong> ${project.location}</p>`;
+                        }
+
+                        if (project.avatar) {
+                            optionsCell.innerHTML += `<p><strong>Avatar:</strong> ${project.avatar}</p>`;
                         }
 
                         projectRow.appendChild(optionsCell);
 
                         const actionsCell = document.createElement('td');
-                        actionsCell.className = 'py-2 text-xl px-4';
+                        actionsCell.className = 'py-2 px-4';
                         actionsCell.innerHTML += `
                 <button
                     onclick="openUpdateStatusModal('${project._id}')"
-                    class="bg-blue-500 text-white font-bold py-2 px-4 text-xl rounded shadow-md hover:bg-blue-700 hover:shadow-lg transition-all duration-300 mr-2">
+                    class="bg-blue-500 text-white font-bold py-2 px-4 rounded shadow-md hover:bg-blue-700 hover:shadow-lg transition-all duration-300 mr-2">
                     Update Status
                 </button><br>
                 <button
                     onclick="openReuploadModal('${project._id}')"
-                    class="bg-green-500 text-white font-bold py-2 px-4 text-xl rounded shadow-md hover:bg-green-700 hover:shadow-lg transition-all duration-300 mr-2">
+                    class="bg-green-500 text-white font-bold py-2 px-4 rounded shadow-md hover:bg-green-700 hover:shadow-lg transition-all duration-300 mr-2">
                     Reupload
-                </button><br>
+                </button><br> 
                 <button
                     onclick="openMediaModal('${project._id}')"
-                    class="bg-indigo-500 text-white font-bold py-2 px-4 text-xl rounded shadow-md hover:bg-indigo-700 hover:shadow-lg transition-all duration-300">
+                    class="bg-indigo-500 text-white font-bold py-2 px-4 rounded shadow-md hover:bg-indigo-700 hover:shadow-lg transition-all duration-300">
                     View Project Files
                 </button>
                 <button
                     onclick="deleteProject('${project._id}')"
-                    class="bg-red-500 text-white font-bold py-2 px-4 text-xl rounded shadow-md hover:bg-red-700 hover:shadow-lg transition-all duration-300">
+                    class="bg-red-500 text-white font-bold py-2 px-4 rounded shadow-md hover:bg-red-700 hover:shadow-lg transition-all duration-300">
                     Delete Project
                 </button><br><br>
             `;
@@ -5689,7 +5030,7 @@
                         const hrCell = document.createElement('td');
                         hrCell.setAttribute('colspan', '7');
                         hrCell.innerHTML =
-                            '<hr class="border-t-2 text-xl border-gray-300 my-4">';
+                            '<hr class="border-t-2 border-gray-300 my-4">';
                         hrRow.appendChild(hrCell);
                         projectsTableBody.appendChild(hrRow);
                     });
@@ -5697,8 +5038,6 @@
                     console.error('Failed to fetch projects:', error);
                 }
             }
-
-            // Remaining functions for opening/closing modals and performing actions
 
             function openUpdateStatusModal(projectId) {
                 document.getElementById('updateStatusModal').dataset.projectId =
@@ -5802,11 +5141,6 @@
                         '#projectsTableBody tr'
                     );
 
-                    // Show the uploading message
-                    const uploadingMessage =
-                        document.getElementById('uploadingMessage');
-                    uploadingMessage.textContent = 'Uploading your file...';
-                    uploadingMessage.classList.remove('hidden');
                     rows.forEach((row) => {
                         // Skip rows that don't have the expected number of cells (7 in this case)
                         if (row.cells.length < 7) return;
@@ -7426,8 +6760,6 @@
             });
         </script>
 
-        <script src="./js/create-avatar.js"></script>
-        <script src="./js/create-plan.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 // Get the URL parameters
@@ -7550,5 +6882,7 @@
         </div>
 
         <script src="./js/affiliate-setting.js"></script>
+        <script src="./js/create-avatar.js"></script>
+        <script src="./js/create-plan.js"></script>
     </body>
 </html>

@@ -1599,6 +1599,18 @@
                         }
                     });
                 });
+                function openModal(videoSrc, title) {
+                    if (videoSrc) {
+                        videoSource.src = videoSrc;
+                        videoPlayer.load(); // Reload video with new source
+                    } else {
+                        console.error('Invalid video source:', videoSrc);
+                    }
+                    videoTitle.textContent = title;
+                    downloadLink.href = videoSrc;
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                }
             </script>
             <script>
                 window.addEventListener('DOMContentLoaded', () =>

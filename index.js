@@ -82,61 +82,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Multer configuration starts//////////////////////////////////////////////////////////////////////
-// const uploadDir = path.join(__dirname, 'uploads');
-// const downloadDir = path.join(__dirname, 'downloads');
-
-// if (!fs.existsSync(uploadDir)) {
-//     fs.mkdirSync(uploadDir, { recursive: true });
-// }
-
-// if (!fs.existsSync(downloadDir)) {
-//     fs.mkdirSync(downloadDir, { recursive: true });
-// }
-
-// // Multer storage configuration for 'uploads' directory
-// const uploadStorage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, 'uploads/');
-//     },
-//     filename: function (req, file, cb) {
-//         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-//         cb(
-//             null,
-//             file.fieldname +
-//                 '-' +
-//                 uniqueSuffix +
-//                 path.extname(file.originalname)
-//         );
-//     },
-// });
-
-// // Multer storage configuration for 'download' directory
-// const downloadStorage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, 'downloads/');
-//     },
-//     filename: function (req, file, cb) {
-//         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-//         cb(
-//             null,
-//             `${req.params.id}-${uniqueSuffix}${path.extname(file.originalname)}`
-//         );
-//     },
-// });
-
 // Configure AWS SDK
-// AWS.config.update({
-//     accessKeyId: process.env.AWS_ACCESS_KEY_ID, // Your AWS Access Key ID
-//     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY, // Your AWS Secret Access Key
-//     //region: process.env.AWS_REGION, // Your AWS Region
+// Initialize S3 Client
+// const s3 = new S3Client({
+//     region: process.env.AWS_REGION, // Ensure this is set
+//     credentials: {
+//         accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+//         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+//     },
 // });
-// const s3 = new AWS.S3();
 
-// // Multer storage configuration for 'uploads' directory on S3
+// Multer storage configuration for 'uploads' directory on S3
 // const uploadStorage = multerS3({
 //     s3: s3,
-//     bucket: process.env.S3_BUCKET_NAME, // Your S3 Bucket Name
-//     acl: 'public-read',
+//     bucket: process.env.S3_BUCKET_NAME,
 //     key: function (req, file, cb) {
 //         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
 //         cb(
@@ -153,8 +112,7 @@ app.use(express.urlencoded({ extended: true }));
 // // Multer storage configuration for 'downloads' directory on S3
 // const downloadStorage = multerS3({
 //     s3: s3,
-//     bucket: process.env.S3_BUCKET_NAME, // Your S3 Bucket Name
-//     acl: 'public-read',
+//     bucket: process.env.S3_BUCKET_NAME,
 //     key: function (req, file, cb) {
 //         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
 //         cb(
@@ -168,30 +126,30 @@ app.use(express.urlencoded({ extended: true }));
 //     },
 // });
 
-// // Create Multer instances for each storage configuration
+// Create Multer instances
 // const upload = multer({ storage: uploadStorage });
 // const downloadUpload = multer({ storage: downloadStorage });
+const uploadDir = path.join(__dirname, 'uploads');
+const downloadDir = path.join(__dirname, 'downloads');
 
-// Configure AWS SDK
-// Initialize S3 Client
-const s3 = new S3Client({
-    region: process.env.AWS_REGION, // Ensure this is set
-    credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+if (!fs.existsSync(downloadDir)) {
+    fs.mkdirSync(downloadDir, { recursive: true });
+}
+
+// Multer storage configuration for 'uploads' directory
+const uploadStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/');
     },
-});
-
-// Multer storage configuration for 'uploads' directory on S3
-const uploadStorage = multerS3({
-    s3: s3,
-    bucket: process.env.S3_BUCKET_NAME,
-    key: function (req, file, cb) {
+    filename: function (req, file, cb) {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
         cb(
             null,
-            'uploads/' +
-                file.fieldname +
+            file.fieldname +
                 '-' +
                 uniqueSuffix +
                 path.extname(file.originalname)
@@ -199,24 +157,21 @@ const uploadStorage = multerS3({
     },
 });
 
-// Multer storage configuration for 'downloads' directory on S3
-const downloadStorage = multerS3({
-    s3: s3,
-    bucket: process.env.S3_BUCKET_NAME,
-    key: function (req, file, cb) {
+// Multer storage configuration for 'download' directory
+const downloadStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'downloads/');
+    },
+    filename: function (req, file, cb) {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
         cb(
             null,
-            'downloads/' +
-                req.params.id +
-                '-' +
-                uniqueSuffix +
-                path.extname(file.originalname)
+            `${req.params.id}-${uniqueSuffix}${path.extname(file.originalname)}`
         );
     },
 });
 
-// Create Multer instances
+// Create Multer instances for each storage configuration
 const upload = multer({ storage: uploadStorage });
 const downloadUpload = multer({ storage: downloadStorage });
 
@@ -321,20 +276,19 @@ app.use('/api/billings', userBillingController);
 app.use('/api/packages', ensureAuthenticated, userPackageController);
 app.use('/api/config', appConfigController);
 
-
 // Route for uploading files
-app.post('/upload', upload.single('file'), (req, res) => {
-    res.send('File uploaded successfully!');
-});
+// app.post('/upload', upload.single('file'), (req, res) => {
+//     res.send('File uploaded successfully!');
+// });
 
-// Route for downloading files
-app.post('/download/:id', downloadUpload.single('file'), (req, res) => {
-    res.send('File uploaded successfully!');
-});
-// Route for downloading files
-app.get('/download/:id', downloadUpload.single('file'), (req, res) => {
-    res.send('File downloded successfully!');
-});
+// // Route for downloading files
+// app.post('/download/:id', downloadUpload.single('file'), (req, res) => {
+//     res.send('File uploaded successfully!');
+// });
+// // Route for downloading files
+// app.get('/download/:id', downloadUpload.single('file'), (req, res) => {
+//     res.send('File downloded successfully!');
+// });
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -554,10 +508,9 @@ app.post(
             const {
                 videoLinks, // Changed to handle multiple links
                 videoDescription,
-                selectedAvatar, // Added to receive the selected avatar name
-                selectedLocation, // Added to receive the avatar location
+                selectedAvatar,
+                selectedLocation, // Handle location for avatar
             } = req.body;
-
             const title = req.headers['page-title'] || 'Untitled Project';
 
             // Determine the feature based on the project title
@@ -587,27 +540,26 @@ app.post(
             userCredit.credits -= 1;
             await user.save();
 
-            // Get the file URLs from S3
             const videoFiles = req.files['videoFiles']
-                ? req.files['videoFiles'].map((file) => file.location) // S3 URL
+                ? req.files['videoFiles'].map((file) => file.path)
                 : [];
             const pictureFiles = req.files['pictureFiles']
-                ? req.files['pictureFiles'].map((file) => file.location) // S3 URL
+                ? req.files['pictureFiles'].map((file) => file.path)
                 : [];
             const audioFiles = req.files['audioFiles']
-                ? req.files['audioFiles'].map((file) => file.location) // S3 URL
+                ? req.files['audioFiles'].map((file) => file.path)
                 : [];
 
             const newProject = new Project({
                 userId,
                 title,
                 videoFiles,
-                videoLink: JSON.parse(videoLinks), // Parse JSON string to array
+                videoLink: JSON.parse(req.body.videoLinks), // Parse JSON string to array
                 pictureFiles,
                 audioFiles,
                 videoDescription,
-                avatar: selectedAvatar, // Save the selected avatar name
-                location: selectedLocation, // Save the avatar location
+                avatar: selectedAvatar,
+                location: selectedLocation, // Save location if avatar is selected
                 status: 'Pending',
             });
 
@@ -630,7 +582,12 @@ ffmpeg.setFfmpegPath(ffmpegInstaller.path);
 ffmpeg.setFfprobePath(ffprobeInstaller.path);
 
 // Function to generate a thumbnail from a video file
+// Function to generate a thumbnail from a video file
 async function generateThumbnail(videoFile) {
+    if (!videoFile || typeof videoFile !== 'string') {
+        throw new Error('Invalid video file path');
+    }
+
     return new Promise((resolve, reject) => {
         const tempThumbnailPath = path.join(
             os.tmpdir(),
@@ -961,27 +918,7 @@ app.get('/api/projects', ensureAdminAuthenticated, async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch projects' });
     }
 });
-//project reuploads after downloading and editing offline
-// app.post(
-//     '/api/projects/:id/reupload',
-//     downloadUpload.single('file'),
-//     async (req, res) => {
-//         try {
-//             const project = await Project.findById(req.params.id);
-//             if (!project) {
-//                 return res.status(404).json({ error: 'Project not found' });
-//             }
-//             // Save the file path relative to the 'download' directory in the editedFile field
-//             project.editedFile = req.file.filename;
-//             project.downloadLink = `/downloads/${req.file.filename}`;
-//             await project.save();
-//             res.json({ project });
-//         } catch (error) {
-//             console.error('Failed to reupload file:', error);
-//             res.status(500).json({ error: 'Failed to reupload file' });
-//         }
-//     }
-// );
+
 app.post(
     '/api/projects/:id/reupload',
     downloadUpload.single('file'),
@@ -991,12 +928,9 @@ app.post(
             if (!project) {
                 return res.status(404).json({ error: 'Project not found' });
             }
-
-            // Save the full S3 URL in the `downloadLink` field
-            const s3Url = req.file.location;
-            project.editedFile = req.file.key; // S3 key
-            project.downloadLink = s3Url; // Full S3 URL
-
+            // Save the file path relative to the 'download' directory in the editedFile field
+            project.editedFile = req.file.filename;
+            project.downloadLink = `/downloads/${req.file.filename}`;
             await project.save();
             res.json({ project });
         } catch (error) {
@@ -1005,6 +939,7 @@ app.post(
         }
     }
 );
+
 // Helper function to delete a file
 const deleteFile = (filePath) => {
     fs.unlink(filePath, (err) => {
@@ -1588,7 +1523,5 @@ app.use((req, res, next) => {
     res.status(500);
     res.sendFile(path.join(__dirname, 'public', '500.html'));
 });
-
-
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

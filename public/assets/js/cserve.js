@@ -26,16 +26,15 @@ document
                 signupMessage.innerText = response.data.msg;
                 signupMessage.style.color = 'lightgreen';
 
-                if (response.data.redirect) {
+                if (response.data.redirectUrl) {
                     // Wait for 2 seconds before redirecting
                     setTimeout(() => {
-                        window.location.href = response.data.redirect;
+                        window.location.href = response.data.redirectUrl;
                     }, 2000);
                 }
             } else {
-                signupMessage.innerText = response.data.msg
-                    ? response.data.msg
-                    : 'Something went wrong';
+                signupMessage.innerText =
+                    response.data.msg || 'Something went wrong';
                 signupMessage.style.color = 'lightcoral';
             }
         } catch (err) {
@@ -55,3 +54,13 @@ document
             signupMessage.style.color = 'lightcoral';
         }
     });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const signupMessage = document.getElementById('signup-message');
+
+    if (signupMessage && signupMessage.dataset.redirectUrl) {
+        setTimeout(() => {
+            window.location.href = signupMessage.dataset.redirectUrl;
+        }, 2000); // 2 seconds
+    }
+});
