@@ -11,6 +11,8 @@ const { PORT } = require('../config');
 const Package = require('../models/Package');
 const { Package: EPackage } = require('../enums/Package');
 const PaymentProvider = require('../models/PaymentProvider');
+const { AppConfig } = require('aws-sdk');
+const { AppConfigTable } = require('../functions/startup');
 
 // Define the function to update credits
 const updateUserCredits = async (user, subscriptionPlan) => {

@@ -108,7 +108,7 @@ const UserSchema = new mongoose.Schema({
         ref: 'User',
     },
     referral_count: {
-        type: String,
+        type: Number,
     },
     address: {
         type: String,
@@ -117,10 +117,10 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
-    // total_earned: {
-    //     type: Number,
-    //     default: 0
-    // },
+    total_earned: {
+        type: Number,
+        default: 0
+    },
     credits: [CreditSchema],
 });
 

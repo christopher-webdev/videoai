@@ -11,6 +11,11 @@ const envVars = {
 
     PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID,
     PAYPAL_SECRET: process.env.PAYPAL_SECRET,
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+    TWITTER_SECRET: process.env.TWITTER_SECRET,
+    TWITTER_CONSUMER_KEY: process.env.TWITTER_CONSUMER_KEY,
+    MONGO_URL: process.env.MONGO_URL,
 
     STRIPE_REDIRECT_URL() {
         return `${this.APP_URL}/plans-billing.html?provider=stripe&action=retrieve_payment`;
@@ -42,22 +47,16 @@ const envVars = {
 };
 
 function getEnv(variable) {
-    const _env =
-        process.env.NODE_ENV === 'development' ? `DEV_${variable}` : variable;
 
     const vars = Object.keys(envVars);
 
-    if (vars.includes(_env)) {
-        return typeof envVars[_env] == 'function'
-            ? envVars[_env]()
-            : envVars[_env];
-    } else if (vars.includes(variable)) {
+    if (vars.includes(variable)) {
         return typeof envVars[variable] == 'function'
             ? envVars[variable]()
             : envVars[variable];
     }
 
-    throw new Error(`No such variable: `, _env, ' | ', variable);
+    throw new Error(`No such variable: `+ variable);
 }
 
 module.exports = getEnv;
