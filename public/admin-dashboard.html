@@ -393,6 +393,42 @@
             ::-webkit-scrollbar-thumb:hover {
                 background: #fca311;
             }
+            /* Base button styling */
+            .admin-button {
+                background-color: #1f2937; /* Dark background color for the button */
+                border: none; /* Remove default border */
+                border-radius: 0.375rem; /* Rounded corners */
+                color: rgb(210, 95, 42); /* Text color */
+                padding: 0.5rem 1rem; /* Padding for spacing */
+                font-size: 1.3rem; /* Font size */
+                cursor: pointer; /* Pointer cursor on hover */
+                display: inline-flex; /* Align items properly */
+                align-items: center; /* Center align text */
+                text-align: center; /* Center text alignment */
+                transition: background-color 0.3s; /* Smooth background color transition */
+            }
+
+            /* Styling the link inside the button */
+            .admin-button .admin-link {
+                color: inherit; /* Inherit the button text color */
+                text-decoration: none; /* Remove underline from the link */
+                display: block; /* Make the link fill the button */
+                width: 100%; /* Ensure the link spans the full width of the button */
+            }
+
+            /* Hover effect */
+            .admin-button:hover {
+                background-color: #374151; /* Slightly lighter shade on hover */
+            }
+
+            /* Optional: Focus styling for accessibility */
+            .admin-button:focus {
+                outline: 2px solid #60a5fa; /* Blue outline for focus indication */
+                outline-offset: 2px; /* Offset outline slightly from the button */
+            }
+            .hidden {
+                display: none;
+            }
         </style>
     </head>
     <body class="bg-light">
@@ -402,172 +438,230 @@
                 <div class="p-4 text-2xl font-semibold">Admin Dashboard</div>
                 <div class="sideBar">
                     <div class="sidebar-admin">
-                        <ul class="mt-8" id="listAllnavigators">
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer active"
-                                id="manageDAshboardBtn"
-                            >
-                                <span class="fa fa-desktop"></span>
-                                Dashboard
-                            </li>
+                        <div class="sidebar-admin">
+                            <ul class="mt-8" id="listAllnavigators">
+                                <li
+                                    class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer active"
+                                    id="manageDAshboardBtn"
+                                >
+                                    <button class="admin-button">
+                                        <span class="fa fa-desktop"></span>
+                                        Dashboard
+                                    </button>
+                                </li>
 
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                id="manageAdminBtn"
-                            >
-                                Manage Admin
-                            </li>
-                            <ul class="ml-4 mt-2 hidden" id="allAdminFunctions">
                                 <li
-                                    class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                    id="registerAdmin"
+                                    class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                    id="manageAdminBtn"
                                 >
-                                    🚀 Register Admin
+                                    <button class="admin-button">
+                                        Manage Admin
+                                    </button>
+                                </li>
+
+                                <ul
+                                    class="ml-4 mt-2 hidden"
+                                    id="allAdminFunctions"
+                                >
+                                    <li
+                                        class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                        id="registerAdmin"
+                                    >
+                                        🚀 Register Admin
+                                    </li>
+                                    <li
+                                        class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                        id="changeAdminPasswordSectionBtn"
+                                    >
+                                        🚀 Change Admin Password
+                                    </li>
+                                    <li
+                                        class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                        id="adminListBtn"
+                                    >
+                                        🚀 Admin List
+                                    </li>
+                                </ul>
+
+                                <li
+                                    class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                    id="manageUsersBtn"
+                                >
+                                    <button class="admin-button">
+                                        Manage Users
+                                    </button>
                                 </li>
                                 <li
-                                    class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                    id="changeAdminPasswordSectionBtn"
+                                    class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                    id="manageSubmitsAndPricingBtn"
                                 >
-                                    🚀 Change Admin Password
+                                    <button class="admin-button">
+                                        Manage User Submits and Pricing
+                                    </button>
                                 </li>
                                 <li
-                                    class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                    id="adminListBtn"
+                                    class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                    id="manageProjectAiBtn"
                                 >
-                                    🚀 Admin List
+                                    <button class="admin-button">
+                                        Manage Projects
+                                    </button>
+                                </li>
+
+                                <ul
+                                    class="ml-4 mt-2 hidden"
+                                    id="manageProjectslinkBtn"
+                                >
+                                    <li
+                                        class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                        data-category=""
+                                    >
+                                        <button class="admin-button">
+                                            🚀 All Projects
+                                        </button>
+                                    </li>
+                                    <li
+                                        class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                        data-category="Video Editor AI"
+                                    >
+                                        <button class="admin-button">
+                                            🚀 Video Editor
+                                        </button>
+                                    </li>
+                                    <li
+                                        class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                        data-category="Video Restyling AI"
+                                    >
+                                        <button class="admin-button">
+                                            🚀 Video Restyle
+                                        </button>
+                                    </li>
+                                    <li
+                                        class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                        data-category="Video Voicing"
+                                    >
+                                        <button class="admin-button">
+                                            🚀 Video Voicing
+                                        </button>
+                                    </li>
+                                    <li
+                                        class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                        data-category="Lip Sync AI"
+                                    >
+                                        <button class="admin-button">
+                                            🚀 Lip Sync
+                                        </button>
+                                    </li>
+                                    <li
+                                        class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                        data-category="Face Swap AI"
+                                    >
+                                        <button class="admin-button">
+                                            🚀 Face Swap
+                                        </button>
+                                    </li>
+                                    <li
+                                        class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                        data-category="3D Video Modeling AI"
+                                    >
+                                        <button class="admin-button">
+                                            🚀 3D Video Modeling
+                                        </button>
+                                    </li>
+                                    <li
+                                        class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                        data-category="Add Avatar"
+                                    >
+                                        <button class="admin-button">
+                                            🚀 My Avatar
+                                        </button>
+                                    </li>
+                                </ul>
+
+                                <li
+                                    class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                    id="manageplanBtn"
+                                >
+                                    <button class="admin-button">
+                                        Manage Plans Pricing View
+                                    </button>
+                                </li>
+                                <li
+                                    class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                    id="addplanBtn"
+                                >
+                                    <button class="admin-button">
+                                        Add More Pricing Plan View
+                                    </button>
+                                </li>
+                                <li
+                                    class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                    id="ManageComparisonBtn"
+                                >
+                                    <button class="admin-button">
+                                        Manage Pricing Plan View Comparison
+                                    </button>
+                                </li>
+                                <li
+                                    class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                    id="AddComparisonBtn"
+                                >
+                                    <button class="admin-button">
+                                        Add More Pricing Plan Comparison
+                                    </button>
+                                </li>
+                                <li
+                                    class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                    id="manageAvatarBtn"
+                                >
+                                    <button class="admin-button">
+                                        <a
+                                            href="manageavatar.html"
+                                            class="admin-link"
+                                            >Manage Avatar</a
+                                        >
+                                    </button>
+                                </li>
+                                <li
+                                    class="router px-4 py-2 hover:bg-gray-600 cursor-pointer"
+                                    id="managePackagesBtn"
+                                    data-url="manage-packages"
+                                >
+                                    <button class="admin-button">
+                                        <a
+                                            href="manageplanx.html"
+                                            class="admin-link"
+                                            >Manage Subscription Plans and
+                                            Packages</a
+                                        >
+                                    </button>
+                                </li>
+                                <li
+                                    class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                    id="manageVideoBtn"
+                                >
+                                    <button class="admin-button">
+                                        Manage Affiliate & Add Videos
+                                    </button>
+                                </li>
+                                <li
+                                    class="px-4 py-2 custom-button hover:bg-gray-600 cursor-pointer"
+                                    id="manageNewsletterBtn"
+                                >
+                                    <button class="admin-button">
+                                        Manage Newsletter
+                                    </button>
                                 </li>
                             </ul>
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                id="manageUsersBtn"
-                            >
-                                Manage Users
-                            </li>
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                id="manageSubmitsAndPricingBtn"
-                            >
-                                Manage User Submits and Pricing
-                            </li>
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                id="manageProjectAiBtn"
-                            >
-                                Manage Projects
-                            </li>
-                            <ul
-                                class="ml-4 mt-2 custom-li hidden"
-                                id="manageProjectslinkBtn"
-                            >
-                                <li
-                                    class="px-4 py-2 over:bg-gray-600 cursor-pointer"
-                                    data-category=""
-                                >
-                                    🚀 All Projects
-                                </li>
-                                <li
-                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
-                                    data-category="Video Editor AI"
-                                >
-                                    🚀 Video Editor
-                                </li>
-                                <li
-                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
-                                    data-category="Video Restyling AI"
-                                >
-                                    🚀 Video Restyle
-                                </li>
-                                <li
-                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
-                                    data-category="Video Voicing"
-                                >
-                                    🚀 Video Voicing
-                                </li>
-                                <li
-                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
-                                    data-category="Lip Sync AI"
-                                >
-                                    🚀 Lip Sync
-                                </li>
-                                <li
-                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
-                                    data-category="Face Swap AI"
-                                >
-                                    🚀 Face Swap
-                                </li>
-                                <li
-                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
-                                    data-category="3D Video Modeling AI"
-                                >
-                                    🚀 3D Video Modeling
-                                </li>
-                                <li
-                                    class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
-                                    data-category="Add Avatar"
-                                >
-                                    🚀 My Avatar
-                                </li>
-                            </ul>
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                id="manageplanBtn"
-                            >
-                                Manage Plans Pricing View
-                            </li>
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                id="addplanBtn"
-                            >
-                                Add More Pricing Plan View
-                            </li>
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                id="ManageComparisonBtn"
-                            >
-                                Manage Pricing Plan View Comparison
-                            </li>
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                id="AddComparisonBtn"
-                            >
-                                Add More Pricing Plan Comparison
-                            </li>
-                            <li
-                                class="px-4 py-2 hover:bg-gray-600 cursor-pointer"
-                                id="manageAvatarBtn"
-                            >
-                                <a href="manageavatar.html">Manage Avatar</a>
-                            </li>
-                            <li
-                                class="router px-4 py-2 hover:bg-gray-600 cursor-pointer"
-                                id="managePackagesBtn"
-                                data-url="manage-packages"
-                            >
-                                <a href="manageplanx.html"
-                                    >Manage subscription Plans and Packages</a
-                                >
-                            </li>
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                id="manageVideoBtn"
-                            >
-                                Add videos & Manage Affiliate
-                            </li>
-                            <li
-                                class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
-                                id="manageNewsletterBtn"
-                            >
-                                Manage Newsletter
-                            </li>
-                        </ul>
+                        </div>
                     </div>
                 </div>
-                <li
+                <button
                     class="px-4 py-2 custom-li hover:bg-gray-600 cursor-pointer"
                     id="logoutBtn"
                 >
-                    <a href="/logout">Logout</a>
-                </li>
+                    Logout
+                </button>
             </div>
 
             <!-- Main Content -->
@@ -1291,22 +1385,22 @@
                                             class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 bg-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                         >
                                             <option value="Free">Free</option>
-                                            <option value="BasicMonthly">
+                                            <option value="Basic Monthly">
                                                 Basic Monthly
                                             </option>
-                                            <option value="CreatorMonthly">
+                                            <option value="Creator Monthly">
                                                 Creator Monthly
                                             </option>
-                                            <option value="PremiumMonthly">
+                                            <option value="Premiu mMonthly">
                                                 Premium Monthly
                                             </option>
-                                            <option value="BasicYearly">
+                                            <option value="Basic Yearly">
                                                 Basic Yearly
                                             </option>
-                                            <option value="CreatorYearly">
+                                            <option value="Creator Yearly">
                                                 Creator Yearly
                                             </option>
-                                            <option value="PremiumYearly">
+                                            <option value="Premium Yearly">
                                                 Premium Yearly
                                             </option>
                                         </select>
@@ -2033,54 +2127,163 @@
                     </div>
                 </div>
                 <!-- ///////////////////////////////////////// End of Manage Projects////////////////////////////////// -->
-                <div id="manageVideoSection" class="hidden p-6 bg-gray-50">
+                <div id="manageVideoSection" class="hidden bg-gray-50">
                     <div id="AffiliatePaymentRequestSection">
-                        <div class="container">
-                            <h1>Update Affiliate System</h1>
-                            <p>
-                                Here you can set the number of referrals before
-                                users request for withdrawals and set the
-                                aamount per 1 referral.
-                            </p>
-                            <form
-                                action="/update-affiliate"
-                                id="AffiliateSystem"
-                                name="AffiliateSystem"
-                                method="POST"
-                            >
-                                <input
-                                    type="text"
-                                    id="id"
-                                    name="id"
-                                    value="1"
-                                    hidden
-                                />
+                        <div class="container grid grid-cols-3 gap-2">
+                            <div class="space-y-4">
+                                <form id="earningPerUserRefereredForm">
+                                    <h2>Earning Per User Referred</h2>
+                                    <small class="text-slate-400">
+                                        Set the amount a user earns for
+                                        referering a friend. (Not for Upgraded
+                                        user)
+                                    </small>
 
-                                <label for="limit">Limit:</label>
-                                <input
-                                    type="text"
-                                    id="limit"
-                                    name="limit"
-                                /><br /><br />
-
-                                <label for="price">Price:</label>
-                                <input
-                                    type="text"
-                                    id="price"
-                                    name="price"
-                                /><br /><br />
-
-                                <button
-                                    class="btn btn-sm btn-primary"
-                                    type="submit"
+                                    <div>
+                                        <label for="price">Amount</label>
+                                        <input
+                                            id="earningPerUserReferered"
+                                            type="text"
+                                            placeholder="(e.g: 30)"
+                                            name="amount"
+                                        />
+                                        <button type="submit">Submit</button>
+                                    </div>
+                                </form>
+                                <form
+                                    class="mb-4"
+                                    id="earningParUpgradedRefererForm"
                                 >
-                                    Update System
-                                </button>
-                            </form>
-                            <br /><br />
+                                    <h2 class="tex-lg text-black">
+                                        Earning per upgraded referer
+                                    </h2>
+                                    <small class="text-slate-400"
+                                        >How much a user gets when the person
+                                        they referred upgrades to any of these
+                                        plans</small
+                                    >
+                                    <div class="flex flex-grow gap-3 my-4">
+                                        <button
+                                            data-name="month"
+                                            class="planDurationSettingControl active"
+                                            type="button"
+                                        >
+                                            Monthly
+                                        </button>
+                                        <button
+                                            data-name="year"
+                                            class="planDurationSettingControl"
+                                            type="button"
+                                        >
+                                            Yearly
+                                        </button>
+                                    </div>
 
+                                    <div id="planDurationSetting"></div>
+                                    <button type="submit">Submit</button>
+                                </form>
+                            </div>
+
+                            <div>
+                                <form class="mb-4" id="withdrawableAmountForm">
+                                    <h2 class="tex-lg text-black">
+                                        Withdrawable Amount
+                                    </h2>
+                                    <small class="text-slate-400"
+                                        >How much a user should accrue before
+                                        they are able to request withdrawal
+                                        (Affiliate + Plan Upgrade)</small
+                                    >
+                                    <div
+                                        class="flex flex-wrap items-start justify-center"
+                                    >
+                                        <input
+                                            class="flex-1"
+                                            placeholder="e.g: 30"
+                                            type="text"
+                                            name="withdrawableAmount"
+                                            id="withdrawableAmount"
+                                        />
+                                        <button type="submit">Submit</button>
+                                    </div>
+                                </form>
+
+                                <form id="affiliateErrorMessageForm">
+                                    <h2 class="tex-lg text-black">
+                                        Affiliate Error Message
+                                    </h2>
+                                    <small class="text-slate-400"
+                                        >This message pops up when user have not
+                                        enough money to withdraw</small
+                                    >
+                                    <div
+                                        class="flex flex-wrap items-start justify-center"
+                                    >
+                                        <input
+                                            class="flex-1"
+                                            id="affiliateErrorMessage"
+                                            placeholder="Insuffucient balance"
+                                            type="text"
+                                            name="affiliateErrorMessage"
+                                        />
+                                        <button type="submit">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div>
+                                <form
+                                    id="videoForm"
+                                    method="POST"
+                                    action="/admin/videos/add"
+                                >
+                                    <p>
+                                        Here you can add youtube videolinks for
+                                        your how to use page(Utilize) and for
+                                        affiliates(Affiliate)
+                                    </p>
+                                    <label for="page">Select Page:</label>
+                                    <select id="page" name="page">
+                                        <option value="utilize">Utilize</option>
+                                        <option value="affiliate">
+                                            Affiliate
+                                        </option>
+                                    </select>
+
+                                    <label for="videoLink"
+                                        >YouTube Video Link:</label
+                                    >
+                                    <input
+                                        type="text"
+                                        placeholder="https://www.youtube.com"
+                                        id="videoLink"
+                                        name="videoLink"
+                                        required
+                                    />
+
+                                    <button type="submit">Add Video</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="gap-2 space-x-2-4 p-4">
+                            <!-- <div class="space-y-4 rounded-lg bg-white shadow-lg p-4">
+                            <form class="mb-4" id="earningParUpgradedRefererForm">
+                                <h2 class="tex-lg text-black">Earning per upgraded referer</h2>
+                                <small class="text-slate-400">How much a user gets when the person they referred
+                                    upgrades to any of these plans</small>
+                                <div class="flex flex-grow gap-3 my-4">
+                                    <button data-name="month" class="planDurationSettingControl active" type="button">Monthly</button>
+                                    <button data-name="year" class="planDurationSettingControl" type="button">Yearly</button>
+                                </div>
+
+                                <div id="planDurationSetting"></div>
+                                <button type="submit">Submit</button>
+                            </form>
+                        </div> -->
                             <table
-                                class="table table-responsive"
+                                class="table table-responsive col-span-2"
                                 id="referral-table"
                             >
                                 <thead>
@@ -2088,6 +2291,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Total Reffered</th>
+                                    <th>Total Earning</th>
                                     <th>Action</th>
                                 </thead>
                                 <tbody></tbody>
@@ -2226,6 +2430,7 @@
                                                 <td>${
                                                     referral.total_referred
                                                 }</td>
+                                                <td>$2,000</td>
                                                 <td>${referral.requestdate}</td>
                                                 <td>${button}</td>
                                             `;
@@ -2251,89 +2456,67 @@
                             }
                         );
 
-                        document
-                            .getElementById('AffiliateSystem')
-                            .addEventListener(
-                                'submit',
-                                async function submitForm(event) {
-                                    event.preventDefault(); // Prevent the default form submission
+                        // document
+                        //     .getElementById('AffiliateSystem')
+                        //     .addEventListener(
+                        //         'submit',
+                        //         async function submitForm(event) {
+                        //             event.preventDefault(); // Prevent the default form submission
 
-                                    // const form = event.target;
-                                    const formData = new FormData(
-                                        AffiliateSystem
-                                    );
-                                    const data = {};
+                        //             const formData = new FormData(this);
+                        //             try {
+                        //                 const response = await fetch(
+                        //                     '/auth/update-affiliate',
+                        //                     {
+                        //                         method: 'POST',
+                        //                         body: formData,
+                        //                     }
+                        //                 );
 
-                                    formData.forEach((value, key) => {
-                                        data[key] = value;
-                                    });
+                        //                 const result = await response.text();
 
-                                    try {
-                                        const response = await fetch(
-                                            '/auth/update-affiliate',
-                                            {
-                                                method: 'POST',
-                                                headers: {
-                                                    'Content-Type':
-                                                        'application/json',
-                                                },
-                                                body: JSON.stringify(data),
-                                            }
-                                        );
-
-                                        const result = await response.text();
-
-                                        if (response.ok) {
-                                            handleNotificator(
-                                                'success',
-                                                result
-                                            ); // Display success message
-                                        } else {
-                                            handleNotificator(
-                                                'error',
-                                                `${result}`
-                                            ); // Display error message
-                                        }
-                                    } catch (error) {
-                                        console.error('Error:', error);
-                                        handleNotificator(
-                                            'error',
-                                            'Server error'
-                                        );
-                                    }
-                                }
-                            );
+                        //                 if (response.ok) {
+                        //                     handleNotificator(
+                        //                         'success',
+                        //                         result
+                        //                     ); // Display success message
+                        //                 } else {
+                        //                     handleNotificator(
+                        //                         'error',
+                        //                         `${result}`
+                        //                     ); // Display error message
+                        //                 }
+                        //             } catch (error) {
+                        //                 console.error('Error:', error);
+                        //                 handleNotificator(
+                        //                     'error',
+                        //                     'Server error'
+                        //                 );
+                        //             }
+                        //         }
+                        //     );
                     </script>
                     <br /><br />
                     <hr />
                     <br /><br />
                     <!-- In admin-dashboard.html -->
+                    <!-- 
+                <form id="videoForm" method="POST" action="/admin/videos/add">
+                    <p>
+                        Here you can add youtube videolinks for your how to
+                        use page(Utilize) and for affiliates(Affiliate)
+                    </p>
+                    <label for="page">Select Page:</label>
+                    <select id="page" name="page">
+                        <option value="utilize">Utilize</option>
+                        <option value="affiliate">Affiliate</option>
+                    </select>
 
-                    <form
-                        id="videoForm"
-                        method="POST"
-                        action="/admin/videos/add"
-                    >
-                        <p>
-                            Here you can add youtube videolinks for your how to
-                            use page(Utilize) and for affiliates(Affiliate)
-                        </p>
-                        <label for="page">Select Page:</label>
-                        <select id="page" name="page">
-                            <option value="utilize">Utilize</option>
-                            <option value="affiliate">Affiliate</option>
-                        </select>
+                    <label for="videoLink">YouTube Video Link:</label>
+                    <input type="text" id="videoLink" name="videoLink" required />
 
-                        <label for="videoLink">YouTube Video Link:</label>
-                        <input
-                            type="text"
-                            id="videoLink"
-                            name="videoLink"
-                            required
-                        />
-
-                        <button type="submit">Add Video</button>
-                    </form>
+                    <button type="submit">Add Video</button>
+                </form> -->
                     <br /><br /><br /><br />
                     <!-- To remove a video -->
                     <!-- In admin-dashboard.html -->
@@ -2355,6 +2538,7 @@
                         </table>
                     </div>
                 </div>
+
                 <div id="manageNewsletter" class="hidden p-6 bg-gray-50">
                     <h1 class="text-2xl font-bold mb-5">
                         Newsletter Subscribers
@@ -3043,7 +3227,7 @@
                         const manageProjectsBtn =
                             document.getElementById('listAllnavigators');
                         const listItems =
-                            manageProjectsBtn.getElementsByTagName('li');
+                            manageProjectsBtn.querySelectorAll('li');
                         for (let i = 0; i < listItems.length; i++) {
                             listItems[i].classList.remove('active'); // Replace 'your-class-name' with the actual class name you want to remove
                         }
@@ -5724,5 +5908,25 @@ Update Plan
         <div class="responser">
             <div class="loader-responder small"></div>
         </div>
+        <script src="./js/affiliate-setting.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // Function to toggle dropdown visibility
+                function toggleDropdown(event) {
+                    const dropdown = event.currentTarget.nextElementSibling; // Get the next <ul> which is the dropdown
+                    if (dropdown) {
+                        dropdown.classList.toggle('hidden'); // Toggle the hidden class
+                    }
+                }
+
+                // Attach event listeners to elements
+                document
+                    .getElementById('manageAdminBtn')
+                    .addEventListener('click', toggleDropdown);
+                document
+                    .getElementById('manageProjectAiBtn')
+                    .addEventListener('click', toggleDropdown);
+            });
+        </script>
     </body>
 </html>

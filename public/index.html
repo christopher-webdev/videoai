@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="assets/css/plugins/bootstrap-select.min.css">
 <link rel="stylesheet" href="assets/css/plugins/prism.css">
 <link rel="stylesheet" href="assets/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
  <!-- Start of LiveChat (www.livechat.com) code -->
  <script>
@@ -95,7 +96,7 @@
               <li><a href='utilize.html'>How to use</a></li>
               <li><a href='affiliate.html'>Affiliate</a></li>
               <li><a href='contact.html'>Contact us</a></li>
-              <li><a href='login.html'>Sign in</a></li>
+              <li id="mobileGetStartedLink"><a href='login.html'>Sign in</a></li>
             </ul>
           </nav>
         </div>
@@ -103,7 +104,7 @@
           <div class="header-right"> 
             
             <!-- Start Header Btn  -->
-            <div class="header-btn"> <a class="rainbow-gradient-btn" href="signup.html"><span>Get Start</span></a> </div>
+            <div class="header-btn"> <a class="rainbow-gradient-btn" id="getStartedLink" href="signup.html"><span>Get Start</span></a> </div>
             <!-- End Header Btn  --> 
             
             <!-- Start Mobile-Menu-Bar -->
@@ -149,7 +150,7 @@
       </div>
       
       <!-- Start Header Btn  -->
-      <div class="header-btn d-block d-md-none"> <a class="btn-default @@btnClass" href="signup.html">Get Started Free</a> </div>
+      <div class="header-btn d-block d-md-none"> <a id="signInLink" class="btn-default @@btnClass" href="signup.html">Get Started Free</a> </div>
       <!-- End Header Btn  --> 
     </div>
   </div>
@@ -176,7 +177,7 @@
               Video <span class="header-caption"> <span class="cd-headline rotate-1"> <span class="cd-words-wrapper" style="width: 221px;"> <b class="theme-gradient is-visible">Generating</b> <b class="theme-gradient is-hidden">Editing</b> <b class="theme-gradient is-hidden">Enhancement</b> </span> </span> </span> </h1>
             <p class="description">Experience next level video AI services on Cashvipe<br>
               Powerful Intelligent video editing tool</p>
-             <a class="btn-default @@btnClass" href=''>Start with Cashvipe AI</a> 
+             <a class="btn-default @@btnClass" href='signup.html'>Start with Cashvipe AI</a> 
             <div class="inner-shape"> <img src="assets/images/bg/icon-shape/icon-shape-one.png" alt="Icon Shape" class="iconshape iconshape-one"> <img src="assets/images/bg/icon-shape/icon-shape-two.png" alt="Icon Shape" class="iconshape iconshape-two"> <img src="assets/images/bg/icon-shape/icon-shape-three.png" alt="Icon Shape" class="iconshape iconshape-three"> <img src="assets/images/bg/icon-shape/icon-shape-four.png" alt="Icon Shape" class="iconshape iconshape-four"> </div>
           </div>
         </div>
@@ -1221,10 +1222,7 @@
               <p class="b1 desc-text">It has long been known that a reader's <br>
                 attention will be diverted from </p>
               <h6 class="subtitle">Join a Newsletter</h6>
-              <form
-                                    class="newsletter-form"
-                                    id="newsletterForm"
-                                >
+              <form class="newsletter-form" id="newsletterForm">
                                     <div class="form-group">
                                         <input
                                             type="email"
@@ -1407,7 +1405,7 @@
               .post('/subscribe', { email })
               .then((response) => {
                   subscriptionMessage.innerText =
-                      'Subscription successful!';
+                      'Newsletter Subscription Successful!';
                   subscriptionMessage.classList.remove(
                       'text-red-600'
                   );

@@ -23,6 +23,7 @@
         <link rel="stylesheet" href="assets/css/plugins/animation.css" />
         <link rel="stylesheet" href="assets/css/plugins/slick.css" />
         <link rel="stylesheet" href="assets/css/plugins/slick-theme.css" />
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <link
             rel="stylesheet"
             href="assets/css/plugins/bootstrap-select.min.css"
@@ -1155,7 +1156,7 @@ document.getElementById('sendMessageBtn').addEventListener('click', function (ev
                         .post('/subscribe', { email })
                         .then((response) => {
                             subscriptionMessage.innerText =
-                                'Subscription successful!';
+                                'Newsletter Subscription Successful!';
                             subscriptionMessage.classList.remove(
                                 'text-red-600'
                             );
