@@ -41,7 +41,7 @@
                             if (name === 'free' || name === 'Free') {
                                 const htv = 'sm-radius-top-left';
                             }
-                            tableHeader += `<th class="${htv}">${name}\n <div class="d-flex justify-content-center"><div class="col-3"><button class="btn btn-sm btn-warning" onclick="editSubscriptionBtn('${name}')" name="${name}"><i class="fa fa-edit"></i></button></div><div class="col-3"><button class="btn btn-sm btn-danger" onclick="deleteComparisonPlan('${name}')" name="${name}" ><i class="fa fa-trash"></i></button> </div></div> </th>`; // Append each plan name as a table header
+                            tableHeader += `<th class="${htv}">${name}\n <div class="d-flex justify-content-center"><!--<div class="col-3"><button class="btn btn-sm btn-warning" onclick="editSubscriptionBtn('${name}')" name="${name}"><i class="fa fa-edit"></i></button></div>--><div class="col-3"><button class="btn btn-sm btn-danger" onclick="deleteComparisonPlan('${name}')" name="${name}" ><i class="fa fa-trash"></i></button> </div></div> </th>`; // Append each plan name as a table header
                         }
                     });
                 });
