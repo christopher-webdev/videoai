@@ -244,6 +244,12 @@
                         googleBtn.href = googleBtn.href + "?ref="+referralId
                     }
                 }
+                
+                // Check for the referral ID in the URL
+                const planmessage = getQueryParam('p');
+                if (planmessage){
+swal.fire('info', 'kindly login or create and account to continue with plan purchase');
+                }
             });
         </script>
         <script src="assets/js/vendor/modernizr.min.js"></script>
