@@ -18,6 +18,44 @@ const { v4: uuidv4 } = require('uuid');
 router.use(express.json());
 router.use(express.static(path.join(__dirname, 'public')));
 router.use(express.urlencoded({ extended: true }));
+router.post('/update-subscription-mortal', (req, res) => {
+    const { id, name, title, value } = req.body;
+
+    // Load the subscription.json file
+    const filePath = path.join(
+    __dirname,
+    '..',
+    'public',
+    'data',
+    'subscription.json'
+);
+    const subscriptions = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+
+    // Find and update the relevant data
+    let updated = false;
+
+    subscriptions.forEach(subscription => {
+        if (subscription.plan[id]) {
+            const plan = subscription.plan[id];
+            const formattedName = name.replace(/__/g, '/').replace(/_/g, ' ');
+          const formattedTitle = title.replace(/__/g, '/').replace(/_/g, ' ');
+            const dataEntry = plan.data.find(d => d.name === formattedTitle);
+            if (dataEntry) {
+                dataEntry.subOption = formattedName;
+                dataEntry.value = value;
+                updated = true;
+            }
+        }
+    });
+
+    // Save the updated subscription.json file
+    if (updated) {
+        fs.writeFileSync(filePath, JSON.stringify(subscriptions, null, 2), 'utf-8');
+        res.status(200).send('Subscription updated successfully.');
+    } else {
+        res.status(404).send('Subscription or data entry not found.');
+    }
+});
 
 // main
 // Define the route to handle form submission
