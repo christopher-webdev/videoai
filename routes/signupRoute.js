@@ -54,8 +54,8 @@ const transporter = nodemailer.createTransport({
         user: 'cvideoai@gmail.com',
         pass: 'lpyt gmfn emmi ucoz', // Use application-specific password if 2FA is enabled
     },
-    logger: true, // Enable logging
-    debug: true, // Enable debug output
+    logger: false, // Enable logging
+    debug: false, // Enable debug output
     tls: {
         rejectUnauthorized: false,
     },
@@ -127,12 +127,10 @@ router.post(
                     });
 
                     // Redirect to email verification page after 2 seconds
-                    return res
-                        .status(200)
-                        .json({
-                            msg: 'Verification email sent',
-                            redirectUrl: '/email-verification.html',
-                        });
+                    return res.status(200).json({
+                        msg: 'Verification email sent',
+                        redirectUrl: '/email-verification.html',
+                    });
                 }
 
                 return res

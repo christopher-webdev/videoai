@@ -9,15 +9,14 @@ const { check, validationResult } = require('express-validator');
 const isSignedIn = require('../middleware/auth');
 const { PORT } = require('../config');
 
-// Email setup
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'cvideoai@gmail.com',
-        pass: 'lpyt gmfn emmi ucoz', // Use application-specific password if 2FA is enabled
+        pass: 'lpyt gmfn emmi ucoz', // Replace with your actual email password or use an environment variable
     },
-    logger: true, // Enable logging
-    debug: true, // Enable debug output
+    logger: false, // Disable logging in production
+    debug: false, // Disable debug output in production
     tls: {
         rejectUnauthorized: false,
     },
