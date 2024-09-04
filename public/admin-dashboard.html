@@ -426,9 +426,6 @@
                 outline: 2px solid #60a5fa; /* Blue outline for focus indication */
                 outline-offset: 2px; /* Offset outline slightly from the button */
             }
-            .hidden {
-                display: none;
-            }
         </style>
     </head>
     <body class="bg-light">
@@ -3124,6 +3121,9 @@
                         document
                             .getElementById('editplanSection')
                             .classList.add('hidden');
+                        document
+                            .getElementById('adminListSection')
+                            .classList.add('hidden');
 
                         document
                             .getElementById('ManageCompareSection')
@@ -3184,6 +3184,9 @@
                             .classList.add('hidden');
                         document
                             .getElementById('editplanSection')
+                            .classList.add('hidden');
+                        document
+                            .getElementById('adminListSection')
                             .classList.add('hidden');
 
                         document
@@ -3303,6 +3306,9 @@
                             .getElementById('manageProjectsSection')
                             .classList.add('hidden');
                         document
+                            .getElementById('adminListSection')
+                            .classList.add('hidden');
+                        document
                             .getElementById('manageAdminSection')
                             .classList.add('hidden');
                         document
@@ -3353,6 +3359,9 @@
                         // Show Manage User Submits and Pricing Section
                         document
                             .getElementById('manageUsersSection')
+                            .classList.add('hidden');
+                        document
+                            .getElementById('adminListSection')
                             .classList.add('hidden');
                         document
                             .getElementById('manageSubmitsAndPricingSection')
@@ -3514,6 +3523,9 @@
                             .getElementById('EditComparesectionsection')
                             .classList.add('hidden');
                         document
+                            .getElementById('adminListSection')
+                            .classList.add('hidden');
+                        document
                             .getElementById('manageVideoSection')
                             .classList.add('hidden');
                         document
@@ -3559,6 +3571,9 @@
                             .classList.add('hidden');
                         document
                             .getElementById('addplanSection')
+                            .classList.add('hidden');
+                        document
+                            .getElementById('adminListSection')
                             .classList.add('hidden');
                         document
                             .getElementById('ManagemainSection')
@@ -3635,6 +3650,9 @@
                             .getElementById('manageVideoSection')
                             .classList.add('hidden');
                         document
+                            .getElementById('adminListSection')
+                            .classList.add('hidden');
+                        document
                             .getElementById('manageNewsletter')
                             .classList.add('hidden');
                         document
@@ -3676,6 +3694,9 @@
                             .classList.add('hidden');
                         document
                             .getElementById('addplanSection')
+                            .classList.add('hidden');
+                        document
+                            .getElementById('adminListSection')
                             .classList.add('hidden');
                         document
                             .getElementById('ManagemainSection')
@@ -3753,6 +3774,9 @@
                             .getElementById('manageNewsletter')
                             .classList.add('hidden');
                         document
+                            .getElementById('adminListSection')
+                            .classList.add('hidden');
+                        document
                             .getElementById('manageAvatarSection')
                             .classList.add('hidden');
                         document
@@ -3793,6 +3817,9 @@
                             .classList.add('hidden');
                         document
                             .getElementById('ManagemainSection')
+                            .classList.add('hidden');
+                        document
+                            .getElementById('adminListSection')
                             .classList.add('hidden');
                         document
                             .getElementById('editplanSection')
@@ -3856,6 +3883,66 @@
                             .classList.add('hidden');
                         document
                             .getElementById('EditComparesectionsection')
+                            .classList.add('hidden');
+                        document
+                            .getElementById('adminListSection')
+                            .classList.add('hidden');
+                        document
+                            .getElementById('manageNewsletter')
+                            .classList.add('hidden');
+                        document
+                            .getElementById('manageAvatarSection')
+                            .classList.add('hidden');
+                        document
+                            .getElementById('managePackageAndPricingSection')
+                            .classList.remove('hidden');
+                    });
+                document
+                    .getElementById('')
+                    .addEventListener('click', function () {
+                        const manageProjectsBtn =
+                            document.getElementById('listAllnavigators');
+                        const listItems =
+                            manageProjectsBtn.getElementsByTagName('li');
+                        for (let i = 0; i < listItems.length; i++) {
+                            listItems[i].classList.remove('active'); // Replace 'your-class-name' with the actual class name you want to remove
+                        }
+                        document
+                            .getElementById('managePackagesBtn')
+                            .classList.add('active');
+                        // Show Manage Projects Section
+                        document
+                            .getElementById('manageUsersSection')
+                            .classList.add('hidden');
+                        document
+                            .getElementById('manageSubmitsAndPricingSection')
+                            .classList.add('hidden');
+                        document
+                            .getElementById('manageProjectsSection')
+                            .classList.add('hidden');
+                        document
+                            .getElementById('ManageCompareSection')
+                            .classList.add('hidden');
+                        document
+                            .getElementById('manageplanSection')
+                            .classList.add('hidden');
+                        document
+                            .getElementById('addplanSection')
+                            .classList.add('hidden');
+                        document
+                            .getElementById('ManagemainSection')
+                            .classList.add('hidden');
+                        document
+                            .getElementById('editplanSection')
+                            .classList.add('hidden');
+                        document
+                            .getElementById('managecompasionsection')
+                            .classList.add('hidden');
+                        document
+                            .getElementById('EditComparesectionsection')
+                            .classList.add('hidden');
+                        document
+                            .getElementById('adminListSection')
                             .classList.add('hidden');
                         document
                             .getElementById('manageNewsletter')
@@ -5469,7 +5556,7 @@
         <script>
             const sidebarLinks = document.querySelectorAll('.cursor-pointer');
             const sections = document.querySelectorAll(
-                '#manageAdminSection, #adminListSection, #manageUsersSection, #manageProjectsSection, #toggleVisabilitySection, #manageSubmitsAndPricingSection, #changeAdminPasswordSection'
+                '#manageAdminSection, #adminListSection, #manageUsersSection, #manageProjectsSection, #toggleVisabilitySection, #manageSubmitsAndPricingSection, #changeAdminPasswordSection, #ManageCompareSection, #manageplanSection, #manageNewsletter'
             );
 
             // Function to hide all sections
