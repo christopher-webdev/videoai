@@ -3897,63 +3897,7 @@
                             .getElementById('managePackageAndPricingSection')
                             .classList.remove('hidden');
                     });
-                document
-                    .getElementById('')
-                    .addEventListener('click', function () {
-                        const manageProjectsBtn =
-                            document.getElementById('listAllnavigators');
-                        const listItems =
-                            manageProjectsBtn.getElementsByTagName('li');
-                        for (let i = 0; i < listItems.length; i++) {
-                            listItems[i].classList.remove('active'); // Replace 'your-class-name' with the actual class name you want to remove
-                        }
-                        document
-                            .getElementById('managePackagesBtn')
-                            .classList.add('active');
-                        // Show Manage Projects Section
-                        document
-                            .getElementById('manageUsersSection')
-                            .classList.add('hidden');
-                        document
-                            .getElementById('manageSubmitsAndPricingSection')
-                            .classList.add('hidden');
-                        document
-                            .getElementById('manageProjectsSection')
-                            .classList.add('hidden');
-                        document
-                            .getElementById('ManageCompareSection')
-                            .classList.add('hidden');
-                        document
-                            .getElementById('manageplanSection')
-                            .classList.add('hidden');
-                        document
-                            .getElementById('addplanSection')
-                            .classList.add('hidden');
-                        document
-                            .getElementById('ManagemainSection')
-                            .classList.add('hidden');
-                        document
-                            .getElementById('editplanSection')
-                            .classList.add('hidden');
-                        document
-                            .getElementById('managecompasionsection')
-                            .classList.add('hidden');
-                        document
-                            .getElementById('EditComparesectionsection')
-                            .classList.add('hidden');
-                        document
-                            .getElementById('adminListSection')
-                            .classList.add('hidden');
-                        document
-                            .getElementById('manageNewsletter')
-                            .classList.add('hidden');
-                        document
-                            .getElementById('manageAvatarSection')
-                            .classList.add('hidden');
-                        document
-                            .getElementById('managePackageAndPricingSection')
-                            .classList.remove('hidden');
-                    });
+
                 manageUsersBtn.addEventListener('click', () => {
                     manageUsersSection.classList.remove('hidden');
                     manageProjectsSection.classList.add('hidden');
@@ -3965,7 +3909,11 @@
                     manageUsersSection.classList.add('hidden');
                     fetchProjects();
                 });
-
+                adminListBtn.addEventListener('click', () => {
+                    manageVideoSection.classList.add('hidden');
+                    manageUsersSection.classList.add('hidden');
+                    fetchProjects();
+                });
                 // Function  user
 
                 // Function  user
@@ -5556,7 +5504,7 @@
         <script>
             const sidebarLinks = document.querySelectorAll('.cursor-pointer');
             const sections = document.querySelectorAll(
-                '#manageAdminSection, #adminListSection, #manageUsersSection, #manageProjectsSection, #toggleVisabilitySection, #manageSubmitsAndPricingSection, #changeAdminPasswordSection, #ManageCompareSection, #manageplanSection, #manageNewsletter'
+                '#manageAdminSection, #adminListSection, #manageUsersSection, #manageProjectsSection, #toggleVisabilitySection, #manageSubmitsAndPricingSection, #changeAdminPasswordSection'
             );
 
             // Function to hide all sections
