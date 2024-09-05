@@ -89,16 +89,29 @@
           <div class="logo"> <a href="index.html"> <img class="logo-light" src="assets/images/logo/logo.png" alt="ChatBot Logo"> </a> </div>
         </div>
         <div class="col-lg-8 d-none d-lg-block">
-          <nav class="mainmenu-nav d-none d-lg-flex justify-content-center"> <ul class="mainmenu">
-              <li><a href='index.html'>Home</a></li>
-              <li><a href='pricing.html'>Pricing</a></li>
-              <li><a href='roadmap.html'>Roadmap</a></li>
-              <li><a href='utilize.html'>How to use</a></li>
-              <li><a href='affiliate.html'>Affiliate</a></li>
-              <li><a href='contact.html'>Contact us</a></li>
-              <li id="mobileGetStartedLink"><a href='login.html'>Sign in</a></li>
-            </ul>
-          </nav>
+          <nav
+                                class="mainmenu-nav d-none d-lg-flex justify-content-center"
+                            >
+                                <ul class="mainmenu">
+                                    <li>
+                                        <a href="index.html">Home</a>
+                                    </li>
+                                    <li><a href="pricing.html">Pricing</a></li>
+
+                                    <li>
+                                        <a href="utilize.html">How to use</a>
+                                    </li>
+                                    <li>
+                                        <a href="affiliate.html">Affiliate</a>
+                                    </li>
+                                    <li>
+                                        <a href="contact.html">Contact us</a>
+                                    </li>
+                                    <li id="signInLink">
+                                        <a href="login.html">Sign in</a>
+                                    </li>
+                                </ul>
+                            </nav>
         </div>
         <div class="col-lg-2 col-md-6 col-6 position-static">
           <div class="header-right"> 
@@ -150,7 +163,7 @@
       </div>
       
       <!-- Start Header Btn  -->
-      <div class="header-btn d-block d-md-none"> <a id="signInLink" class="btn-default @@btnClass" href="signup.html">Get Started Free</a> </div>
+      <div class="header-btn d-block d-md-none"> <a class="btn-default @@btnClass" href="signup.html">Get Started Free</a> </div>
       <!-- End Header Btn  --> 
     </div>
   </div>
@@ -1431,7 +1444,7 @@
               .catch((error) =>
                   console.error('Error fetching user status:', error)
               );
-      }
+      };
 
       // Add event listeners to links
       document
@@ -1448,6 +1461,12 @@
           });
       document
           .getElementById('mobileGetStartedLink')
+          .addEventListener('click', function (event) {
+              event.preventDefault(); // Prevent the default link behavior
+              checkUserStatusAndRedirect();
+          });
+          document
+          .getElementById('login-login')
           .addEventListener('click', function (event) {
               event.preventDefault(); // Prevent the default link behavior
               checkUserStatusAndRedirect();
