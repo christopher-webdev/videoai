@@ -230,7 +230,7 @@
                 max-width: 400px;
             }
 
-            input,
+            /* input,
             select,
             textarea {
                 width: 100%;
@@ -241,7 +241,7 @@
                 margin-bottom: 1rem;
                 font-size: 1rem;
                 color: #333;
-            }
+            } */
 
             input:focus,
             select:focus,
@@ -359,7 +359,7 @@
             }
 
             /* Scrollable Sections */
-            #rainbow-compare-table,
+            /* #rainbow-compare-table,
             #manageplanSection,
             #addplanSection,
             #manageProjectsSection,
@@ -374,7 +374,7 @@
                 height: 100vh;
                 overflow-y: auto;
                 padding-bottom: 4rem;
-            }
+            } */
 
             /* Custom Scrollbar */
             ::-webkit-scrollbar {
@@ -4106,6 +4106,17 @@
                     document
                         .getElementById('managePackageAndPricingSection')
                         .classList.add('hidden');
+                });
+                manageAvatarBtn.addEventListener('click', () => {
+                    // manageVideoSection.classList.add('hidden');
+                    manageAdminSection.classList.add('hidden');
+                    changeAdminPasswordSection.classList.add('hidden');
+                    adminListSection.classList.add('hidden');
+                    ManageCompareSection.classList.add('hidden');
+                    managecompasionsection.classList.add('hidden');
+                    EditComparesectionsection.classList.add('hidden');
+                    manageplanSection.classList.add('hidden');
+                    manageVideoSection.classList.add('hidden');
                 });
                 managePackagesBtn.addEventListener('click', () => {
                     // manageVideoSection.classList.add('hidden');
