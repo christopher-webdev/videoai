@@ -4017,6 +4017,9 @@
                         document
                             .getElementById('managePackageAndPricingSection')
                             .classList.remove('hidden');
+                        document
+                            .getElementById('manageVideoSection')
+                            .classList.add('hidden');
                     });
 
                 manageUsersBtn.addEventListener('click', () => {
@@ -4100,6 +4103,20 @@
                     managecompasionsection.classList.add('hidden');
                     EditComparesectionsection.classList.add('hidden');
                     manageplanSection.classList.add('hidden');
+                    document
+                        .getElementById('managePackageAndPricingSection')
+                        .classList.add('hidden');
+                });
+                managePackagesBtn.addEventListener('click', () => {
+                    // manageVideoSection.classList.add('hidden');
+                    manageAdminSection.classList.add('hidden');
+                    changeAdminPasswordSection.classList.add('hidden');
+                    adminListSection.classList.add('hidden');
+                    ManageCompareSection.classList.add('hidden');
+                    managecompasionsection.classList.add('hidden');
+                    EditComparesectionsection.classList.add('hidden');
+                    manageplanSection.classList.add('hidden');
+                    manageVideoSection.classList.add('hidden');
                 });
 
                 // Function  user
