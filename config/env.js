@@ -47,7 +47,6 @@ const envVars = {
 };
 
 function getEnv(variable) {
-
     const vars = Object.keys(envVars);
 
     if (vars.includes(variable)) {
@@ -56,7 +55,7 @@ function getEnv(variable) {
             : envVars[variable];
     }
 
-    throw new Error(`No such variable: `+ variable);
+    throw new Error(`No such variable: ` + variable);
 }
 
 module.exports = getEnv;

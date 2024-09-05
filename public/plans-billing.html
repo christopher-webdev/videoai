@@ -826,7 +826,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li
+                                        <!-- <li
                                             x-data="accordionItem('menu-item-4')"
                                         >
                                             <a
@@ -838,7 +838,7 @@
                                             >
                                                 <span>Payment method</span></a
                                             >
-                                        </li>
+                                        </li> -->
                                         <li
                                             x-data="accordionItem('menu-item-5')"
                                         >
@@ -1030,6 +1030,25 @@
                         ).innerHTML = `${user.firstName} ${user.lastName}`;
                     });
             });
+            document
+                .getElementById('logout-button')
+                .addEventListener('click', async function () {
+                    try {
+                        const response = await axios.post('/auth/logout');
+                        if (response.status === 200) {
+                            const { isImpersonating } = response.data;
+                            if (isImpersonating) {
+                                window.location.href = '/admin-dashboard.html'; // Redirect admin back to their dashboard
+                            } else {
+                                window.location.href = '/index.html'; // Redirect normal user to login page
+                            }
+                        } else {
+                            console.error('Logout failed');
+                        }
+                    } catch (error) {
+                        console.error('Error during logout:', error);
+                    }
+                });
 
             function formatMoney(amount) {
                 const formatter = new Intl.NumberFormat('en-US', {

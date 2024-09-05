@@ -1,9 +1,10 @@
 const STRIPE_PUBLIC_KEY =
-    'pk_test_51DKSt8AW156duCe7SQPEiEgCvN7VOTUIvpkyfqNdMo72W8v4pFDZmuLxMs69clBbDXMHPL5SKAdodlXO0Mxx71HN00Yzx63HKt';
+    'pk_live_51PX7zD2NC0fsFA1CWDG9I24aqeZ2545c87RhN51QsC9VhtDr2A4VAma8LJDfkSToUtyviUVrJaXjJsyo7Ko5mKXV00knIDuC9N';
 const PAYPAL_CLIENT_ID =
-    'AfF6JpcY-Fr8z-f27osmui4h1c0g2CSdUOo_mMGzVXExwApV-mNg-zH6VCKLK3U84KimA3j2pR7TyLLA';
+    'AUHfjqwLb71XOydbVKlkrsE3F2Tk7OrEELPiSep3OCXL3UO6m7-9jcbE4ti1T-h1LK4l63Z4d80U_-np';
 
-let stripe, elementsLoaded = false;
+let stripe,
+    elementsLoaded = false;
 
 const PROVIDERS = {
     stripe: 'https://js.stripe.com/v3/',
@@ -28,6 +29,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             '/plans-billing.html'
         );
         const clientSecret = url.get('payment_intent_client_secret');
+        s;
 
         const { error, paymentIntent } = await stripe.retrievePaymentIntent(
             clientSecret
@@ -108,7 +110,7 @@ async function handlePayment(packageId) {
         .getElementById('payWithStripeBtn')
         .addEventListener(
             'click',
-            async ()=> await initStripePaymentModal(packageId) 
+            async () => await initStripePaymentModal(packageId)
         );
     //   document.getElementById('payWithKlarnaBtn').addEventListener('click', async () => await initKlarnaPaymentModal(packageId));
     document
@@ -141,18 +143,16 @@ function initStripePayment(packageId) {
         const cardElement = elements.create('payment', {
             paymentMethodOrder: ['apple_pay', 'google_pay', 'klarna', 'card'],
             wallets: {
-                applePay: "auto",
-                googlePay: "auto"
-            }
+                applePay: 'auto',
+                googlePay: 'auto',
+            },
         });
         cardElement.mount('#payment-element');
 
-    const el = elements.getElement('payment')
-    if(el){
-        elementsLoaded = true
-    }
-
-
+        const el = elements.getElement('payment');
+        if (el) {
+            elementsLoaded = true;
+        }
 
         form.addEventListener('submit', async function (event) {
             event.preventDefault();
@@ -258,9 +258,9 @@ async function initStripePaymentModal(packageId) {
         </form>`,
     });
     interval = setInterval(() => {
-        if(elementsLoaded){
-            document.querySelector("#ssss").classList.remove("hidden")
-            clearInterval(interval)
+        if (elementsLoaded) {
+            document.querySelector('#ssss').classList.remove('hidden');
+            clearInterval(interval);
         }
     }, 1000);
 
@@ -332,21 +332,28 @@ async function initStripePaypalModal(packageId) {
     const { planId, productId } = (await response.json()).data;
     console.log('🚀 ~ initStripePaypalModal ~ planId:', planId);
 
-    document.querySelector("#paypal-button-container").innerText = ""
+    document.querySelector('#paypal-button-container').innerText = '';
     paypal
         .Buttons({
             async createSubscription(data, actions) {
-                const createSubscription = () => new Promise((resolve, reject) => {
-                    const createSub = actions.subscription.create({
-                        plan_id: planId,
+                const createSubscription = () =>
+                    new Promise((resolve, reject) => {
+                        const createSub = actions.subscription.create({
+                            plan_id: planId,
+                        });
+                        console.log(
+                            '🚀 ~ createSubscription ~ createSub: Promise',
+                            createSub
+                        );
+                        resolve(createSub);
                     });
-                    console.log("🚀 ~ createSubscription ~ createSub: Promise", createSub)
-                    resolve(createSub);
-                });
 
-                const subscriptionId = await createSubscription()
-                console.log("🚀 ~ createSubscription ~ subscriptionId: after promise", subscriptionId)
-                
+                const subscriptionId = await createSubscription();
+                console.log(
+                    '🚀 ~ createSubscription ~ subscriptionId: after promise',
+                    subscriptionId
+                );
+
                 const response = await fetch(
                     `/api/billings/pay-with?provide=paypal.create-subscription`,
                     {

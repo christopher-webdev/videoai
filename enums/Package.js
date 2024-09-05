@@ -18,7 +18,7 @@ const Package = {
     BasicYearly: {
         name: 'Basic Yearly',
         amount: 0,
-        interval: Interval.Monthly,
+        interval: Interval.Yearly,
     },
     CreatorMonthly: {
         name: 'Creator Monthly',
@@ -28,7 +28,7 @@ const Package = {
     CreatorYearly: {
         name: 'Creator Yearly',
         amount: 0,
-        interval: Interval.Monthly,
+        interval: Interval.Yearly,
     },
     PremiumMonthly: {
         name: 'Premium Monthly',
@@ -36,9 +36,9 @@ const Package = {
         interval: Interval.Monthly,
     },
     PremiumYearly: {
-        name: 'Premium Yearly',
+        name: 'Premium Yearly',
         amount: 0,
-        interval: Interval.Monthly,
+        interval: Interval.Yearly,
     },
 };
 

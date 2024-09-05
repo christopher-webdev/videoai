@@ -24,11 +24,12 @@ async function getUploadedAvatars() {
             const imgEl = createEl('img', {
                 className: 'object-cover',
                 src: img.image,
+                style: 'width: 300px; height: 300px;', // Set width and height here
             });
             const deleteBtn = createEl('button', {
                 type: 'button',
                 className:
-                    'absolute top-0 right-0 bg-red-500 text-white tex-sm texxt-white px-1 rounded-md',
+                    'bg-red-500 text-white tex-sm texxt-white px-1 rounded-md',
                 textContent: 'Delete',
             });
 
@@ -186,7 +187,7 @@ function createAvatarControles(imageData = null) {
     const submitAvatar = createEl('button', {
         type: 'submit',
         className: 'p-2 bg-green-500 rounded-md text-white font-bolder',
-        textContent: imageData ? 'Update Avatar' : 'Upload Avatar',
+        textContent: imageData ? 'View Avatar' : 'Upload Avatar',
     });
 
     controls.append(submitAvatar);
@@ -221,8 +222,7 @@ function createImageSelector(options, imageData = null) {
     const dismissThis = createEl('button', {
         type: 'button',
         textContent: 'x',
-        className:
-            'ignore text-sm text-red-500 rounded-full p-1 absolute top-1 right-1',
+        className: 'ignore text-sm text-red-500 rounded-full p-1',
     });
     const selector = createEl('input', {
         accept: 'image/*',
@@ -233,6 +233,7 @@ function createImageSelector(options, imageData = null) {
                   filename: imageData.name,
               }
             : undefined),
+        style: 'display: none;', // Hide file input element
     });
 
     selector.addEventListener('change', function () {

@@ -612,11 +612,7 @@
                                     id="manageAvatarBtn"
                                 >
                                     <button class="admin-button">
-                                        <a
-                                            href="manageavatar.html"
-                                            class="admin-link"
-                                            >Manage Avatar</a
-                                        >
+                                        Manage Avatar
                                     </button>
                                 </li>
                                 <li
@@ -625,12 +621,7 @@
                                     data-url="manage-packages"
                                 >
                                     <button class="admin-button">
-                                        <a
-                                            href="manageplanx.html"
-                                            class="admin-link"
-                                            >Manage Subscription Plans and
-                                            Packages</a
-                                        >
+                                        Manage Subscription Pricing Plan
                                     </button>
                                 </li>
                                 <li
@@ -662,6 +653,135 @@
             </div>
 
             <!-- Main Content -->
+            <!-- Main Content -->
+            <div
+                id="managePackageAndPricingSection"
+                class="hidden sidebar-content flex manage-packages"
+            >
+                <div class="container mx-auto p-4">
+                    <h1 class="text-2xl font-bold mb-4">
+                        Manage Subscription Packages
+                    </h1>
+
+                    <!-- Section for Adding New Package -->
+                    <div>
+                        <div class="mb-6">
+                            <h2 class="text-xl font-semibold mb-2">
+                                Add New Package
+                            </h2>
+                            <button
+                                id="AddPackageBtn"
+                                class="px-4 py-2 bg-blue-500 text-white rounded"
+                            >
+                                Add Package
+                            </button>
+                        </div>
+
+                        <!-- Section for Updating Existing Packages -->
+                        <div class="mb-6">
+                            <h2 class="text-xl font-semibold mb-2">
+                                Update Existing Packages
+                            </h2>
+                            <button
+                                id="UpdatePackageBtn"
+                                class="px-4 py-2 bg-green-500 text-white rounded"
+                            >
+                                Update Package
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Container for displaying and managing packages -->
+                <div id="packagesContainer" class="space-y-4">
+                    <!-- Package forms will be dynamically added here -->
+                </div>
+            </div>
+            <script>
+                // Function to reset CSS classes and styles
+                function resetStyles() {
+                    const section = document.getElementById(
+                        'managePackageAndPricingSection'
+                    );
+                    if (section) {
+                        // Remove any dynamically applied CSS classes or styles
+                        section.classList.remove('hidden');
+                        section.classList.remove('sidebar-content');
+                        section.classList.remove('manage-packages');
+                        section.removeAttribute('style'); // Remove inline styles if any
+
+                        // Optionally, you could also reset the content or state if needed
+                        // section.innerHTML = ''; // Uncomment if you want to clear HTML content
+                    }
+                }
+
+                // Function to toggle the visibility of the section
+                function toggleSection() {
+                    const section = document.getElementById(
+                        'managePackageAndPricingSection'
+                    );
+                    if (section) {
+                        if (section.classList.contains('hidden')) {
+                            // Reset styles before showing
+                            resetStyles();
+                            // Show the section
+                            section.classList.remove('hidden');
+                        } else {
+                            // Hide the section
+                            section.classList.add('hidden');
+                        }
+                    }
+                }
+
+                // Event listeners for buttons to show/hide the section
+                document
+                    .getElementById('AddPackageBtn')
+                    .addEventListener('click', function () {
+                        toggleSection(); // Toggle the section visibility
+                    });
+
+                document
+                    .getElementById('UpdatePackageBtn')
+                    .addEventListener('click', function () {
+                        toggleSection(); // Toggle the section visibility
+                    });
+            </script>
+            <div class="flex p-6 hidden" id="manageAvatarSection">
+                <div class="sidebar-content manage-projects">
+                    <style>
+                        .submitAvatar,
+                        .avatarBtn {
+                            background-color: #1f2937;
+                            color: rgb(209, 31, 31);
+                            font-weight: 600;
+                        }
+                        .avatar-background img {
+                            width: 150px;
+                            height: 150px;
+                            object-fit: cover; /* This ensures that the image covers the area without distortion */
+                        }
+                    </style>
+                    <h2 class="text-3xl font-semibold text-gray-700 mb-6">
+                        Manage Avatars
+                    </h2>
+                    <div>
+                        <div>
+                            <p>Upload avatars and locations.</p>
+                            <small class="text-slate-500"
+                                >Click the box to upload an image</small
+                            >
+                        </div>
+
+                        <div
+                            id="UpdateUploaderContainer"
+                            class="flex gap-4 rounded-md m-2"
+                        ></div>
+                    </div>
+                    <br />
+                    <div id="UploaderContainer"></div>
+                    <section><div id="UploaderContainer"></div></section>
+                </div>
+            </div>
 
             <div class="flex-1 p-8">
                 <!--  -->
@@ -1388,7 +1508,7 @@
                                             <option value="Creator Monthly">
                                                 Creator Monthly
                                             </option>
-                                            <option value="Premiu mMonthly">
+                                            <option value="Premium Monthly">
                                                 Premium Monthly
                                             </option>
                                             <option value="Basic Yearly">
@@ -2558,7 +2678,7 @@
                 <div id="contentArea" class="injected-content"></div>
 
                 <!-- Manage Subscriptons packages and benefits  Section -->
-                <div
+                <!-- <div
                     id="managePackageAndPricingSection"
                     class="hidden sidebar-content manage-packages"
                 >
@@ -2575,7 +2695,7 @@
                             id=""
                             class="mx-auto p-6 bg-white shadow-md rounded-md"
                         >
-                            <!-- <form id="" class="space-y-1"> -->
+                            <form id="" class="space-y-1"> 
                             <button
                                 type="button"
                                 id="AddPackageBtn"
@@ -2583,24 +2703,24 @@
                             >
                                 Add A Plan
                             </button>
-                            <!-- <template> -->
+                             <template>
                             <div class="flex mb-4">
-                                <!-- <div class="w-full sm:w-1/2 px-2 mb-4"> -->
+                                <<div class="w-full sm:w-1/2 px-2 mb-4"> 
 
                                 <div id="packagesContainer"></div>
 
-                                <!-- </div> -->
+                                 </div> 
                             </div>
-                            <!-- </template> -->
+                             </template> 
 
-                            <!-- </form> -->
+                             </form>
 
                             <div id="messageContainer" class="mt-4 p-4 hidden">
                                 <span id="messageText" class="text-sm"></span>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -6024,6 +6144,9 @@ Update Plan
         </style>
         <script src="./js/comparison.json"></script>
         <script src="./js/affiliate-setting.js"></script>
+        <script src="./js/create-avatar.js"></script>
+        <script src="./js/create-plan.js"></script>
+
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 // Function to toggle dropdown visibility
